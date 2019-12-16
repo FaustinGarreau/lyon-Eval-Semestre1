@@ -8,7 +8,7 @@ ob_start();
     foreach ($books as $book) {
         ?>
         <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
-            <div class="card bg-white rounded shadow h-full flex flex-col">
+            <div class="card bg-white rounded shadow h-full flex flex-col border-l-4 border-purple-900">
                 <header class="p-4 font-bold tracking-widest">
                     <h3><i class="fas fa-heading mr-4 text-purple-900"></i><?php echo escape($book['title']);?></h2>
                 </header>
