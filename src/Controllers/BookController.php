@@ -14,3 +14,11 @@ function bookShow($slug) {
     }
     require VIEWS . 'books/show.php';
 }
+
+function bookEdit($slug) {
+    $book = getBook($slug);
+    if (!$book) {
+        header('Location: /404');
+    }
+    require VIEWS . 'books/edit.php';
+}
