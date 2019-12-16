@@ -8,6 +8,10 @@ ob_start();
         <header class="p-4 font-bold tracking-widest">
             <h3><i class="fas fa-heading mr-4 text-purple-900"></i><?php echo escape($book['title']);?></h2>
         </header>
+        <div class="content border-t p-4 flex-grow flex items-center">
+            <i class="fas fa-user mr-4 text-purple-900"></i>
+            <p><?php echo escape($book['author']);?></p>
+        </div>
         <div class="content border-t border-b p-4 flex-grow flex items-center">
             <i class="fas fa-book-open mr-4 text-purple-900"></i>
             <?php echo escape($book['description']);?>

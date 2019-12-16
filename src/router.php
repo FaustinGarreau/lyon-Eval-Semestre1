@@ -10,7 +10,7 @@ function run() {
         require CONTROLLERS . 'BookController.php';
         bookIndex();
     }
-    elseif ($url == "/livres" && $method == 'POST') {
+    elseif ($url == "/livres/nouveau" && $method == 'POST') {
         require CONTROLLERS . 'BookController.php';
         bookStore();
     }
