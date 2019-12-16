@@ -32,6 +32,9 @@ function run() {
     }
     elseif (preg_match("#^\/livres/([A-Za-z0-9-_' ]+)\/delete$#", $url, $matches) && $method == 'POST') {
         require CONTROLLERS . 'BookController.php';
-        bookIndex($matches[1]);
+        bookDelete($matches[1]);
+    }
+    else {
+        echo 'NOT FOUND';
     }
 }
