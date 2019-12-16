@@ -15,3 +15,15 @@ function getBook($slug) {
     
     return $request->fetch();
 }
+
+function updateBook($slug) {
+    global $bdd;
+    $request = $bdd->prepare('UPDATE book SET title = :title, slug = :slug, description = :description, date = :date WHERE slug = :prevSlug');
+    $request->execute([
+        "title" => $_POST['title'],
+        "slug" => $_POST['slug'],
+        "description" => $_POST['description'],
+        "date" => $_POST['date'],
+        "prevSlug" => $slug
+    ]);
+}
