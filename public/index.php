@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-setlocale(LC_ALL, 'FR_fr');
-
 // all config stuff
 require '../src/config/config.php';
 
