@@ -40,3 +40,11 @@ function storeBook() {
         "date" => $_POST['date'],
     ]);
 }
+
+function deleteBook($slug) {
+    global $bdd;
+    $request = $bdd->prepare('DELETE FROM book WHERE slug = :slug');
+    $request->execute([
+        "slug" => $slug
+    ]);
+}

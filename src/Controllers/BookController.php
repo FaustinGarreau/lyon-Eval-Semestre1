@@ -103,4 +103,10 @@ function bookStore() {
     header('Location: /livres/nouveau');
     exit();
 }
+
+function bookDelete($slug) {
+    deleteBook($slug);
+    header('Location: /livres');
+    exit();
+}
     
