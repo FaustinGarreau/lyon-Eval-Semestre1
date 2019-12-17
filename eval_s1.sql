@@ -7,5 +7,5 @@ CREATE TABLE book (
     slug varchar(255) UNIQUE NOT NULL,
     description text NOT NULL,
     date date NOT NULL,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
 );
