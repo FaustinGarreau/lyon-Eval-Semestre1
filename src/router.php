@@ -46,6 +46,12 @@ function run() {
             require(CONTROLLERS."AuthController.php");
             registerPage();
         }
+
+        //Show login page (GET)
+        elseif (preg_match("#^\/login\/?$#", $url)) {
+            require(CONTROLLERS."AuthController.php");
+            loginPage();
+        }
     }
 
     //POST METHOD
@@ -77,6 +83,12 @@ function run() {
         elseif (preg_match("#^\/register\/?$#", $url)) {
             require(CONTROLLERS."AuthController.php");
             registerUser();
+        }
+
+        //login user (POST)
+        elseif (preg_match("#^\/login\/?$#", $url)) {
+            require(CONTROLLERS."AuthController.php");
+            loginUser();
         }
     }
 }
