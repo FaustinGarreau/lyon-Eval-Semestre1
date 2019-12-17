@@ -20,9 +20,66 @@
     }
 
     function bookStore() {
-        require MODELS.'Book.php';
-        storeBook();
-        header('Location: /livres');
+        if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["description"])) {
+            $_SESSION['title'] = $_POST['title'];
+            $_SESSION['author'] = $_POST['author'];
+            $_SESSION['description'] = $_POST['description'];
+            if (empty($_SESSION['title'])) {
+                $_SESSION['error']['titleError'] = "le title est requis";
+            }else if (!preg_match('#^[A-Za-z-]{2,}$#', $_SESSION['title'])) {
+                $_SESSION['error']['titleError'] = "Format incorrect (au moins 2 caractères)";
+            } else {
+                $_SESSION['title'] = $_SESSION['title'];
+            }
+        
+            if (empty($_SESSION['author'])) {
+                $_SESSION['error']['authorError'] = "l'auteur est requis";
+            }else if (!preg_match('#^[A-Za-z-]{1,}$#', $_SESSION['author'])) {
+                $_SESSION['error']['authorError'] = "Format incorrect il ne faut que des lettres ou des -";
+            } else {
+                $_SESSION['author'] = $_SESSION['author'];
+            }
+
+            if (empty($_SESSION['description'])) {
+                $_SESSION['error']['descriptionError'] = "la description est requis";
+            }else if (!preg_match('#^[A-Za-z-() ]{1,}$#', $_SESSION['description'])) {
+                $_SESSION['error']['descriptionError'] = "Format incorrect il ne faut que des lettres, de - ou des ()";
+            } else {
+                $_SESSION['description'] = $_SESSION['description'];
+                }
+
+
+                if (!isset($_SESSION['errors'])) {
+                    require MODELS.'Book.php';
+                    $title = getTitle($_POST['title']);
+                    $slug = getBook($_POST['slug']);
+                    if ($title) {
+                        $_SESSION['error']['titleError'] = 'Il y a déjà ce titre utilsé dans un autre livre';
+                        header('Location: /livres/nouveau');
+                        exit();
+                    }
+                    if ($slug) {
+                        $_SESSION['error']['slugError'] = 'Il y a déjà ce slug utilsé dans un autre livre';
+                        header('Location: /livres/nouveau');
+                        exit();
+                    }
+                    bookStore();
+                    header('Location: /livres/' . $_POST['slug']);
+                } else {
+                    header('Location: /livres/nouveau');
+                    exit();
+                }
+
+
+            if (!isset($_SESSION['error'])) {
+                require MODELS.'Book.php';
+                storeBook();
+                header('Location: /livres');
+
+            } else {
+                header('Location: /livres/nouveau');
+            }
+    }
     }
 
     function bookDelete($slug) {

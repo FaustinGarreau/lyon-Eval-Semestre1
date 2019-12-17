@@ -3,6 +3,16 @@ $title = "Créer un nouveau livre";
 ob_start();
 ?>
 
+<?php 
+function getError($field) {
+    if(isset($_SESSION['error'][$field])) {
+        $error = $_SESSION['error'][$field];
+        unset($_SESSION['error'][$field]);
+        return $error;
+    }
+} 
+?>
+
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
 
     <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Créer un Livre</h1>
@@ -11,22 +21,22 @@ ob_start();
             <header class="p-4 flex items-center">
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="title" type="text" name="title" value="titre" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
-                    <span class="text-red-500 font-bold">erreur</span>
+                    <input id="title" type="text" name="title" value="" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
+                    <span class="text-red-500 font-bold"><?php echo getError('titleError'); ?></span>
                 </div>
             </header>
             <div class="p-4 flex items-center border-t">
                 <label for="author"><i class="fas fa-user mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="title" type="text" name="author" value="auteur" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
-                    <span class="text-red-500 font-bold">erreur</span>
+                    <input id="title" type="text" name="author" value="" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
+                    <span class="text-red-500 font-bold"><?php echo getError('authorError'); ?></span>
                 </div>
             </div>
             <div class="content border-t border-b p-4 flex-grow flex items-center">
                 <label for="description"><i class="fas fa-book-open mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
                     <textarea name="description" id="description" rows="8" class="w-full rounded border py-2 px-4" placeholder="Votre description"><?php echo old('description');?></textarea>
-                    <span class="text-red-500 font-bold">erreur</span>
+                    <span class="text-red-500 font-bold"><?php echo getError('descriptionError'); ?></span>
                 </div>
             </div>
             <div class="p-4 flex border-b items-center">
@@ -57,3 +67,5 @@ ob_start();
 $content = ob_get_clean();
 
 require VIEWS . 'layout.php';
+?>
+<?php unset($_SESSION['error']);?>

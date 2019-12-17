@@ -47,4 +47,12 @@ function uptadeBook($slug) {
     ]);
 }
 
+function getTitle($title){
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM book WHERE title = :title');
+    $req->execute([
+        'title' => $title,
+    ]);
+    return $req->fetch();
+}
 ?>
