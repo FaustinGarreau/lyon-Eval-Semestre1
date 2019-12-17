@@ -1,5 +1,9 @@
 <?php
 function bookCreate() {
+    if (!isLogin()) {
+        header("Location: /livres/");
+        die();
+    }
     require VIEWS.'books/create.php';
 }
 
@@ -9,12 +13,6 @@ function bookIndex() {
     require VIEWS.'books/index.php';
 }
 
-function bookDelete($slug) {
-    require MODELS."Books.php";
-    $book = deleteBook($slug);
-    header("Location: /livres/");
-}
-
 function bookShow($slug) {
     require MODELS."Books.php";
     $book = getBook($slug);
@@ -22,12 +20,32 @@ function bookShow($slug) {
 }
 
 function bookEdit($slug) {
+    if (!isLogin()) {
+        header("Location: /livres/");
+        die();
+    }
     require MODELS."Books.php";
     $book = getBook($slug);
     require VIEWS.'books/edit.php';
 }
 
+// Back
+
+function bookDelete($slug) {
+    if (!isLogin()) {
+        header("Location: /livres/");
+        die();
+    }
+    require MODELS."Books.php";
+    $book = deleteBook($slug);
+    header("Location: /livres/");
+}
+
 function bookStore() {
+    if (!isLogin()) {
+        header("Location: /livres/");
+        die();
+    }
     $_SESSION["old"] = $_POST;
 
     // Is title empty
@@ -86,6 +104,10 @@ function bookStore() {
 }
 
 function bookUpdate($slug) {
+    if (!isLogin()) {
+        header("Location: /livres/");
+        die();
+    }
     $_SESSION["old"] = $_POST;
 
     // Is title empty

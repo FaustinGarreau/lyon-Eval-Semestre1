@@ -2,7 +2,11 @@
 $title = "Tout les livres";
 ob_start();
 ?>
-<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <a href="/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a></h1>
+<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres
+<?php if (isLogin()): ?>
+    <a href="/nouveau" id="nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a>
+<?php endif; ?>
+</h1>
 <div class="flex flex-wrap -mx-4">
 
     <?php
@@ -31,7 +35,6 @@ ob_start();
         </div>
     <?php endforeach; ?>
 </div>
-
 <?php
 
 $content = ob_get_clean();

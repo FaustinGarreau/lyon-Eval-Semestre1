@@ -5,6 +5,11 @@ function getOld($value) {
     return escape($_SESSION["old"][$value] ?? "");
 }
 
+// Return false if not login, else return true
+function isLogin() {
+    return isset($_SESSION["username"]);
+}
+
 // Return error message
 function getError($value) {
     return escape($_SESSION["errors"][$value] ?? "");

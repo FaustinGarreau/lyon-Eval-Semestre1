@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 *  Url : the url to match, like "/abcdef".
 *  Path : the user path
 *  Matches : return matches defined by ? in url
@@ -32,6 +32,24 @@ function run() {
             // Create page
             require CONTROLLERS."BookController.php";
             bookEdit($matchs[1]);
+        } elseif (match("/livres/?/edit", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookEdit($matchs[1]);
+        } elseif (match("/login", $url)) {
+            // Create page
+            require CONTROLLERS."AuthController.php";
+            login();
+        } elseif (match("/register", $url)) {
+            // Create page
+            require CONTROLLERS."AuthController.php";
+            register();
+        } elseif (match("/logout", $url)) {
+            // Create page
+            require CONTROLLERS."AuthController.php";
+            logout();
+        } else {
+            header("Location: /livres/");
         }
     }
     // Is post request
@@ -48,6 +66,14 @@ function run() {
             // Delete page
             require CONTROLLERS."BookController.php";
             bookDelete($matchs[1]);
+        } elseif (match("/login", $url)) {
+            // Create page
+            require CONTROLLERS."AuthController.php";
+            loginUser();
+        } elseif (match("/register", $url)) {
+            // Create page
+            require CONTROLLERS."AuthController.php";
+            registerUser();
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
-// function getLastsArticles($start, $size) {
+// function getLastBooks($start, $size) {
 //     global $pdo;
-//     $stmt = $pdo->prepare("SELECT title, content, created_at, updated_at, slug FROM article ORDER BY created_at DESC LIMIT :start_at, :size");
+//     $stmt = $pdo->prepare("SELECT title, description, `date`, slug FROM book ORDER BY `date` DESC LIMIT :start_at, :size");
 //     $stmt->bindValue("start_at", $start, PDO::PARAM_INT);
 //     $stmt->bindValue("size", $size, PDO::PARAM_INT);
 //     $stmt->execute();
