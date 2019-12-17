@@ -36,3 +36,11 @@
     $req = $bdd->prepare("DELETE FROM book WHERE slug = :slug");
     $req->execute(array('slug'=>$slug));
   }
+
+
+  function updatedBook($slug){
+    global $bdd;
+    //request SQL
+    $req = $bdd->prepare("UPDATE book SET title = :title , author = :author, description = :description , date = :date, slug = :newSlug WHERE slug = :slug");
+    $req->execute(array('title'=>$_POST['title'], 'author'=>$_POST['author'], 'description'=>$_POST['description'], 'date'=>$_POST['date'], 'slug'=>$slug, 'newSlug' =>slugify($_POST['slug']) ));
+  }
