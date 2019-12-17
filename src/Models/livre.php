@@ -16,3 +16,12 @@ function storeBook($slug) {
         "date" => $_POST["date"],
     ]);
 }
+
+function getBook($slug) {
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM book WHERE slug = :slug');
+    $req->execute([
+        "slug" => $slug
+    ]);
+    return $req->fetchAll();
+} 

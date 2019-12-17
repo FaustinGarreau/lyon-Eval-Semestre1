@@ -16,5 +16,9 @@ function run() {
         require CONTROLLER .'livreController.php';
         bookCreate();
     }
+    elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url)) {
+        require CONTROLLER .'livreController.php';
+        bookShow($matches[1]);
+    }
 
 }
