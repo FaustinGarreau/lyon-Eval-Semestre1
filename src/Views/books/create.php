@@ -1,4 +1,11 @@
 <?php
+//Connection verfication
+
+if (!isset($_SESSION["username"]) && !isset($_SESSION["userid"])) {
+    header("Location: /login");
+    die();
+}
+
 $title = "Créer un nouveau livre";
 ob_start();
 ?>

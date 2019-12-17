@@ -2,7 +2,11 @@
 $title = "Tout les livres";
 ob_start();
 ?>
-<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a></h1>
+<h1 class="mb-8 text-2xl font-bold">
+    <i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres
+
+    <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a>
+</h1>
 <div class="flex flex-wrap -mx-4">
     <?php foreach ($books as $book): ?>
         <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
