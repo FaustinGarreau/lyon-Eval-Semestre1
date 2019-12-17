@@ -56,3 +56,13 @@
       }
     }
   }
+
+
+  function deleteBook($slug){
+    require MODELS.'/bookModel.php';
+    if (isset($_POST['delete'])) {
+      deletedBook($slug);
+      header('Location: /books');
+      exit();
+    }
+  }

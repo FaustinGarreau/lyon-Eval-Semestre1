@@ -28,3 +28,11 @@
     //return $articleIndex
     return $bookIndex;
   }
+
+
+  function deletedBook($slug){
+    global $bdd;
+    //request SQL
+    $req = $bdd->prepare("DELETE FROM book WHERE slug = :slug");
+    $req->execute(array('slug'=>$slug));
+  }

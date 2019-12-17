@@ -21,8 +21,8 @@ ob_start();
                 <a href="/livres/slug/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                   <i class="fas fa-edit"></i>
                 </a>
-                <form action="/livres/slug/delete" method="post">
-                  <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
+                <form action="/book/<?php echo $selectedBook['slug']?>/delete" method="post">
+                  <button type="submit" name="delete" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
                 </form>
               </div>
             </footer>

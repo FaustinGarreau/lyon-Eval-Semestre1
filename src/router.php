@@ -32,4 +32,11 @@ function run() {
       require CONTROLLERS.'/bookController.php';
       showBook($matches[1]);
     }
+
+    elseif (preg_match('#^\/book\/([a-zA-Z0-9_-]+)\/delete#', $_SERVER['REQUEST_URI'], $matches ) && $_SERVER['REQUEST_METHOD'] == "POST") {
+      //supprime un livre
+      require CONTROLLERS.'/bookController.php';
+      deleteBook($matches[1]);
+      header("Location: books");
+    }
 }
