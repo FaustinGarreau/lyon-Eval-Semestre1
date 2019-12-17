@@ -30,6 +30,15 @@ function storeBook() {
 }
 
 
+function deleteBook($slug) {
+    global $bdd;
+    $req = $bdd->prepare("DELETE FROM book WHERE slug = ?");
+    $req->execute(array(
+        $slug
+    ));
+}
+
+
 function updateBook($slug) {
     global $bdd;
     $req = $bdd->prepare('UPDATE book SET title = ?, author = ?, description = ?, slug = ?, date = ? WHERE slug = ?');

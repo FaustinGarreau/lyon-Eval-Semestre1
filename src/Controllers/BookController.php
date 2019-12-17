@@ -25,6 +25,12 @@ function bookEdit($slug) {
     require VIEWS . 'books/edit.php';
 }
 
+function bookDelete($slug) {
+    require MODELS . 'Book.php';
+    deleteBook($slug);
+    header('Location: /livres');
+}
+
 function bookUpdate($slug) {
     if (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
 
