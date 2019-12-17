@@ -20,6 +20,12 @@ function getBook($slug) {
     return $stmt->fetch();
 }
 
+function deleteBook($slug) {
+    global $pdo;
+    $stmt = $pdo->prepare("DELETE FROM book WHERE slug=?");
+    $stmt->execute([$slug]);
+}
+
 function storeBook($author, $slug, $title, $description, $date) {
     global $pdo;
     $stmt = $pdo->prepare("INSERT INTO book
@@ -51,10 +57,4 @@ function updateBook($slug, $author, $newslug, $title, $description, $date) {
         'newslug' => $newslug,
         'slug' => $slug
     ]);
-}
-
-function deleteBook($slug) {
-    global $pdo;
-    $stmt = $pdo->prepare("DELETE FROM article WHERE slug=?");
-    $stmt->execute([$slug]);
 }

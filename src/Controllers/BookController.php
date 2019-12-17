@@ -9,6 +9,12 @@ function bookIndex() {
     require VIEWS.'books/index.php';
 }
 
+function bookDelete($slug) {
+    require MODELS."Books.php";
+    $book = deleteBook($slug);
+    header("Location: /livres/");
+}
+
 function bookShow($slug) {
     require MODELS."Books.php";
     $book = getBook($slug);

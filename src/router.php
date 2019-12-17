@@ -41,9 +41,13 @@ function run() {
             require CONTROLLERS."BookController.php";
             bookStore();
         } elseif (match("/livres/?/edit", $url, $matchs)) {
-            // Create page
+            // Update page
             require CONTROLLERS."BookController.php";
             bookUpdate($matchs[1]);
+        } elseif (match("/livres/?/delete", $url, $matchs)) {
+            // Delete page
+            require CONTROLLERS."BookController.php";
+            bookDelete($matchs[1]);
         }
     }
 }
