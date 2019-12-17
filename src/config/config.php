@@ -9,3 +9,6 @@ define("VIEWS", '../src/Views/');
 define('DATABASE', 'eval_s1');
 define('USER', 'root');
 define('PASSWORD', 'root');
+
+// set to French date
+setlocale(LC_TIME, "fr_FR");

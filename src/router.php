@@ -6,14 +6,20 @@ function run() {
 
     if ($url == "/") {
         //Home page
-        require(CONTROLLERS."BookController.php");
-        home();
     }
 
     //GET METHOD
+
     elseif ($method == "GET") {
-        if (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
-            //Create book page (GET)
+
+        //Create book page (GET)
+        if (preg_match("#^\/livres\/?$#", $url)) {
+            require(CONTROLLERS."BookController.php");
+            bookIndex();
+        }
+
+        //Create book page (GET)
+        elseif (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
             require(CONTROLLERS."BookController.php");
             bookCreate();
         }
@@ -21,9 +27,8 @@ function run() {
 
     //POST METHOD
     elseif ($method == "POST") {
+        //Create book in bdd (POST)
         if (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
-            //Create book in bdd (POST)
-            echo "string";
             require(CONTROLLERS."BookController.php");
             bookStore();
         }

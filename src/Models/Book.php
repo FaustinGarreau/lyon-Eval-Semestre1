@@ -1,5 +1,13 @@
 <?php
 
+function getBooks() {
+    global $bdd;
+
+    $stmt = $bdd->query("SELECT * FROM book");
+
+    return $stmt->fetchAll();
+}
+
 function getBook($slug) {
     global $bdd;
 

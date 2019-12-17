@@ -2,8 +2,11 @@
 
 // GET FUNCTIONS
 
-function home()
+function bookIndex()
 {
+    require(MODELS."Book.php");
+    $books = getBooks();
+
     //require VIEW
     require(VIEWS.'books/index.php');
 }
@@ -51,7 +54,6 @@ function bookStore() {
         }
 
 
-
         // author verification
         if (!empty(escape($_POST["author"]))) {
             if (preg_match("#^[ \w-]{2,}$#", $_POST["author"])) {
@@ -66,7 +68,6 @@ function bookStore() {
             // EMPTY ERROR
             $_SESSION["error"]["author"] = "Le champ est requis";
         }
-
 
 
         // description verification
@@ -103,7 +104,6 @@ function bookStore() {
         }
 
 
-
         // date verification
         if (!empty(escape($_POST["date"]))) {
             if (preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $_POST["date"])) {
@@ -118,7 +118,6 @@ function bookStore() {
             // EMPTY ERROR
             $_SESSION["error"]["date"] = "Le champ est requis";
         }
-
 
 
         //Insert new Article
