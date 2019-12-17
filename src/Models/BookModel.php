@@ -33,3 +33,26 @@ function getBooks() {
 
     return $books;
 }
+
+function updateBook($slug) {
+    global $bdd;
+    // requete sql
+    $req = $bdd->prepare('UPDATE book SET title = :title, author = :author, slug = :slugPost , description = :description, date = :date WHERE slug = :slug');
+    $req->execute(array(   
+        'slug' => $slug,
+        "title" => test_input($_POST['title']),
+        "author" => test_input($_POST['author']),
+        "slugPost" => test_input($_POST['slug']),
+        "description" => test_input($_POST['description']),
+        "date" => test_input($_POST['date'])
+       ));
+}
+
+function deleteBook($slug) {
+    global $bdd;
+    // requete sql
+    $req = $bdd->prepare('DELETE FROM book WHERE slug = :slug');
+    $req->execute(array(   
+        'slug' => $slug,
+       ));
+}

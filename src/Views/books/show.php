@@ -19,10 +19,10 @@ ob_start();
         <footer class="p-4 flex justify-between items-center">
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo $book["date"]; ?></p>
             <div class="actions flex">
-                <a href="/livres/slug/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
+                <a href="/books/<?php echo $book['slug'];?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                     <i class="fas fa-edit"></i>
                 </a>
-                <form action="/livres/slug/delete" method="post">
+                <form action="/books/<?php echo $book['slug'];?>/delete" method="post">
                     <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </div>

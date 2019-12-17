@@ -5,17 +5,17 @@ function bookCreate() {
 }
 
 function bookStore() {
-    if (isset($_POST["title"]) && isset($_POST['author']) && isset($_POST["slug"]) && isset($_POST["description"]) ) {
-        
+    if (isset($_POST["title"]) && isset($_POST['author']) && isset($_POST["slug"]) && isset($_POST["description"]) && isset($_POST["date"]) ) {
+
         if (empty($_POST["title"])) {
             $_SESSION['errors']["titleErr"] = "Title is required";
-        }
+        } 
         if (empty($_POST["author"])) {
             $_SESSION['errors']["authorErr"] = "Author is required";
         }
         if (empty($_POST["slug"])) {
             $_SESSION['errors']["slugErr"] = "Slug is required";
-        }
+        }  
         if (empty($_POST["description"])) {
             $_SESSION['errors']["descriptionErr"] = "Description is required";
         }
@@ -52,4 +52,56 @@ function bookShow($slug) {
     } else {
         header("Location: /books");
     }
+}
+
+
+function bookUpdate($slug) {
+    if (isset($_POST["title"]) && isset($_POST['author']) && isset($_POST["slug"]) && isset($_POST["description"]) && isset($_POST["date"]) ) {
+        
+        if (empty($_POST["title"])) {
+            $_SESSION['errors']["titleErr"] = "Title is required";
+        }
+        if (empty($_POST["author"])) {
+            $_SESSION['errors']["authorErr"] = "Author is required";
+        }
+        if (empty($_POST["slug"])) {
+            $_SESSION['errors']["slugErr"] = "Slug is required";
+        }
+        if (empty($_POST["description"])) {
+            $_SESSION['errors']["descriptionErr"] = "Description is required";
+        }
+        if (empty($_POST["date"])) {
+            $_SESSION['errors']["dateErr"] = "Date is required";
+        }
+
+
+        if (!isset($_SESSION["errors"])) {
+            require MODELS . "BookModel.php";
+            updateBook($slug);
+            header("Location: /books");
+            exit();
+        } else {
+            header('Location: /books/' . $slug . '/edit');
+            exit();
+        }
+
+        
+    }
+}
+
+function bookEdit($slug) {
+    require MODELS . 'BookModel.php';
+    $book = getBook($slug);
+    if ($book) {
+        require VIEWS . 'books/edit.php';
+    } else {
+        header('Location: /books/edit');
+    }
+}
+
+
+function bookDelete($slug) {
+    require MODELS . 'BookModel.php';
+    deleteBook($slug);
+    header('Location: /books');
 }

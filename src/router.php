@@ -8,6 +8,16 @@ function run() {
 
     } 
 
+    elseif (preg_match('#^\/books\/([a-zA-Z0-9_-]+)\/delete$#',$url,$match) && $method == "POST") {
+        require CONTROLLERS . 'BookController.php';
+        bookDelete($match[1]);
+    } 
+
+    elseif (preg_match('#^\/books\/([a-zA-Z0-9_-]+)$#',$url,$match) && $method == "POST") {
+        require CONTROLLERS . 'BookController.php';
+        BookUpdate($match[1]);
+    }
+
     elseif (preg_match('#^\/books$#',$url) && $method == "POST") {
         require CONTROLLERS . "BookController.php";
         bookStore();
@@ -26,6 +36,11 @@ function run() {
     elseif (preg_match('#^\/books\/([a-zA-Z0-9_-]+)$#',$url,$match)) {
         require CONTROLLERS . 'BookController.php';
         bookShow($match[1]);
+    } 
+
+    elseif (preg_match('#^\/books\/([a-zA-Z0-9_-]+)\/edit$#',$url,$match)) {
+        require CONTROLLERS . 'BookController.php';
+        bookEdit($match[1]);
     } 
     
 
