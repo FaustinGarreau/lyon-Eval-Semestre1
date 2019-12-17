@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // all config stuff
 require '../src/config/config.php';
 

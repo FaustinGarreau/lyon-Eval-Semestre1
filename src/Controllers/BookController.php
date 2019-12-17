@@ -41,27 +41,36 @@
         }
     }
     function bookUptade($slug) {
-        if (isset($_POST['title']) && isset($_POST['author']) && isset($_POST['description'])) {
+        if (isset($_POST['title']) && isset($_POST['author']) && isset($_POST['description']) && isset($_POST['slug']) && isset($_POST['date'])) {
             $_SESSION['title'] = $_POST['title'];
             $_SESSION['author'] = $_POST['author'];
             $_SESSION['description'] = $_POST['description'];
+            $_SESSION['slug'] = $_POST['slug'];
+            $_SESSION['date'] = $_POST['date'];
+
             if (empty($_POST['title'])) {
                 $_SESSION['error']['titleErr'] = "le title est requis";
             }
             if (empty($_POST['author'])) {
                 $_SESSION['error']['authorErr'] = "l'auteur est requis";
             }
-            if (empty($_POST['contenu'])) {
-                $_SESSION['error']['contenuErr'] = "le contenu est requis";
+            if (empty($_POST['description'])) {
+                $_SESSION['error']['descriptionErr'] = "la description est requis";
             }
+            if (empty($_POST['slug'])) {
+                $_SESSION['error']['slugErr'] = "le slug est requis";
+            }
+            if (empty($_POST['date'])) {
+                $_SESSION['error']['dateErr'] = "la date est requis";
+            }
+
             if (!isset($_SESSION['error'])) {
-                
                 require MODELS.'Book.php';
                 uptadeBook($slug);
-                header('Location: /livres/' . $_POST['slug']);
+                header('Location: /livres/'. $_POST['slug']);
 
             } else {
-                header('Location: /livres' . $slug . '/edit');
+                header('Location: /livres/' . $slug . '/edit');
             }
         
     }

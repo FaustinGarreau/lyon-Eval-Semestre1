@@ -12,7 +12,7 @@ ob_start();
             <i class="fas fa-user mr-4 text-purple-900"></i>
             <p><?php echo $book['author'];?></p>
         </div>
-        <div class="content border-t border-b p-4 flex-grow flex items-center">
+        <div class="content border-t border-b p-4 flex-grow flex items-center break-all">
             <i class="fas fa-book-open mr-4 text-purple-900"></i>
             <?php echo $book['description'];?>
         </div>
