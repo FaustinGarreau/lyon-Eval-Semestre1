@@ -5,12 +5,41 @@ function bookCreate() {
 }
 
 function bookStore() {
-    
-    
+
+    if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['author']) && isset($_POST['slug']) && isset($_POST['date'])) {
+        $_SESSION['title'] = $_POST['title'];
+        $_SESSION['description'] = $_POST['description'];
+        $_SESSION['author'] = $_POST['author'];
+        $_SESSION['slug'] = $_POST['slug'];
+        $_SESSION['date'] = $_POST['date'];
+        if (empty($_POST['title'])) {
+            $_SESSION['errors']['titleErr'] = "le title est requis";
+        }
+        if (empty($_POST['description'])) {
+            $_SESSION['errors']['descErr'] = "le contenu est requis";
+        }
+        if (empty($_POST['author'])) {
+            $_SESSION['errors']['authorErr'] = "le contenu est requis";
+        }
+        if (empty($_POST['slug'])) {
+            $_SESSION['errors']['slugErr'] = "le contenu est requis";
+        }
+        if (empty($_POST['date'])) {
+            $_SESSION['errors']['dateErr'] = "le contenu est requis";
+        }
+        if (!isset($_SESSION['errors'])) {
+            require MODELS.'book.php';
+            storeBook();
+            header('Location: /livres/' . $_POST['slug']);
+        } else {
+            header('Location: /livres/nouveau');
+            exit();
+        }
+    }
     //apeler le model
-    require MODELS.'book.php';
-    storeBook();
-    header('Location: /livres');
+    //require MODELS.'book.php';
+    //storeBook();
+    //header('Location: /livres');
     //fonction model
     //redirection
 }
@@ -47,27 +76,27 @@ function bookUpdate($slug) {
         $_SESSION['slug'] = $_POST['slug'];
         $_SESSION['date'] = $_POST['date'];
         if (empty($_POST['title'])) {
-            $_SESSION['error']['titleErr'] = "le title est requis";
+            $_SESSION['errors']['titleErr'] = "le title est requis";
         }
         if (empty($_POST['description'])) {
-            $_SESSION['error']['descErr'] = "le contenu est requis";
+            $_SESSION['errors']['descErr'] = "le contenu est requis";
         }
         if (empty($_POST['author'])) {
-            $_SESSION['error']['authorErr'] = "le contenu est requis";
+            $_SESSION['errors']['authorErr'] = "le contenu est requis";
         }
         if (empty($_POST['slug'])) {
-            $_SESSION['error']['slugErr'] = "le contenu est requis";
+            $_SESSION['errors']['slugErr'] = "le contenu est requis";
         }
         if (empty($_POST['date'])) {
-            $_SESSION['error']['dateErr'] = "le contenu est requis";
+            $_SESSION['errors']['dateErr'] = "le contenu est requis";
         }
-        if (!isset($_SESSION['error'])) {
+        if (!isset($_SESSION['errors'])) {
             require MODELS.'book.php';
             updateBook($slug);
             header('Location: /livres/' . $_POST['slug']);
         } else {
             header('Location: /livres/' . $slug . '/edit');
-             
+            exit();
         }
     }
             

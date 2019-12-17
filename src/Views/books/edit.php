@@ -51,7 +51,6 @@ ob_start();
         
     </div>
 </div>
-<?php unset($_SESSION['error']);?>
 
 <?php
 
