@@ -13,7 +13,7 @@
         <div class="container mx-auto flex justify-between">
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
             <nav class="flex">
-                <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <a href="/books" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
             </nav>
         </div>
     </header>

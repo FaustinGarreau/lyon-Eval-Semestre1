@@ -1,9 +1,17 @@
 <?php
 
 function error($field) {
+  if (isset($_SESSION['errors'][$field])) {
+    return $_SESSION['errors'][$field];
+  }
+  return '';
 }
 
 function old($field) {
+  if (isset($_SESSION['old'][$field])) {
+    return $_SESSION['old'][$field];
+  }
+  return '';
 }
 
 function escape($data) {
