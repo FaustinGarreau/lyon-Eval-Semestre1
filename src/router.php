@@ -52,6 +52,12 @@ function run() {
             require(CONTROLLERS."AuthController.php");
             loginPage();
         }
+
+        //logout (GET)
+        elseif (preg_match("#^\/logout\/?$#", $url)) {
+            require(CONTROLLERS."AuthController.php");
+            logoutUser();
+        }
     }
 
     //POST METHOD

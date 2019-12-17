@@ -19,6 +19,10 @@
                     <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">Se Connecter</a>
                     <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">Créer un Compte</a>
                     <?php
+                } else {
+                    ?>
+                    <a href="/logout" class="p-4 hover:bg-purple-600 flex items-center">Se Déconnecter</a>
+                    <?php
                 } ?>
 
             </nav>

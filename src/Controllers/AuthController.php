@@ -13,6 +13,15 @@ function loginPage() {
     //require VIEW
     require(VIEWS.'auth/login.php');
 }
+
+//Show login page
+function logoutUser() {
+    require(MODELS."Auth.php");
+    logout();
+
+    header("Location: /livres");
+}
+
 // POST FUNCTIONS
 
 //Registration verification
