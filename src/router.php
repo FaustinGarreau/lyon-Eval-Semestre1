@@ -24,19 +24,32 @@ function run() {
             bookCreate();
         }
 
-        //Create book page (GET)
+        //Show book page (GET)
         elseif (preg_match("#^\/livres\/([\w?-]+)\/?$#", $url, $slug)) {
             require(CONTROLLERS."BookController.php");
             bookShow($slug[1]);
+        }
+
+        //Edit book page (GET)
+        elseif (preg_match("#^\/livres\/([\w?-]+)\/edit\/?$#", $url, $slug)) {
+            require(CONTROLLERS."BookController.php");
+            bookEdit($slug[1]);
         }
     }
 
     //POST METHOD
     elseif ($method == "POST") {
+
         //Create book in bdd (POST)
         if (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
             require(CONTROLLERS."BookController.php");
             bookStore();
+        }
+
+        //Update book in bdd (POST)
+        elseif (preg_match("#^\/livres\/([\w?-]+)\/?$#", $url, $slug)) {
+            require(CONTROLLERS."BookController.php");
+            bookUpdate($slug[1]);
         }
     }
 }
