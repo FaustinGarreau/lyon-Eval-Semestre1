@@ -10,3 +10,4 @@ CREATE TABLE book (
     PRIMARY KEY(id),
     CONSTRAINT uq_book UNIQUE(title, author)
 );
+ALTER TABLE book DROP INDEX uq_book;

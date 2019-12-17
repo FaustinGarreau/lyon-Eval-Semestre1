@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // all config stuff
 require '../src/config/config.php';
@@ -7,7 +8,12 @@ require '../src/config/config.php';
 require SRC . 'helper.php';
 
 //database connexion
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=' . DATABASE . ';charset=utf8;' , USER, PASSWORD);
+try {
+    $pdo = new PDO("mysql:host=".DATABASE_HOST.";dbname=".DATABASE_NAME.";charset=utf8", DATABASE_USER, DATABASE_PASSWORD);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) {
+    die("Impossible de se connecter à la base de donnée");
+}
 
 // parsing URL
 require SRC . 'router.php';
