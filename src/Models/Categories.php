@@ -16,3 +16,15 @@ function addCategory($category, $slug) {
     $stmt = $pdo->prepare("INSERT INTO category (category, slug) VALUES (?, ?)");
     $stmt->execute([$category, $slug]);
 }
+
+function updateCategory($oldslug, $category, $slug) {
+    global $pdo;
+    $stmt = $pdo->prepare("UPDATE category SET category=?, slug=? WHERE slug=?");
+    $stmt->execute([$category, $slug, $oldslug]);
+}
+
+function deleteCategory($slug) {
+    global $pdo;
+    $stmt = $pdo->prepare("DELETE FROM category WHERE slug=?");
+    $stmt->execute([$slug]);
+}

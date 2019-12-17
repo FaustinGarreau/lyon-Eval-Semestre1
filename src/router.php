@@ -82,6 +82,16 @@ function run() {
             // New category
             require CONTROLLERS."CategoriesController.php";
             categoryStore();
+        } elseif (match("/categories/edit/?", $url, $matchs)) {
+            // Edit category
+            require CONTROLLERS."CategoriesController.php";
+            categoryEdit($matchs[1]);
+        } elseif (match("/categories/delete/?", $url, $matchs)) {
+            // Delete category
+            require CONTROLLERS."CategoriesController.php";
+            categoryDelete($matchs[1]);
+        } else {
+            header("Location: /livres/");
         }
     }
 }

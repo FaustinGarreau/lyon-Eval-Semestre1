@@ -24,3 +24,5 @@ CREATE TABLE category (
     slug VARCHAR(255) NOT NULL UNIQUE,
     PRIMARY KEY(id)
 );
+ALTER TABLE `book` ADD `category_id` INT UNSIGNED NOT NULL;
+ALTER TABLE `book` ADD CONSTRAINT `fk_book_category` FOREIGN KEY(`category_id`) REFERENCES `category`(`id`);
