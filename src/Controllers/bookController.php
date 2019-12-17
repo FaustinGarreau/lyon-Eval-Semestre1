@@ -4,6 +4,18 @@
     require VIEWS.'/books/create.php';
   }
 
+  function booksPage(){
+    require MODELS."/bookModel.php";
+    $bookIndex = getAllBooks();
+    require VIEWS.'/books/index.php';
+  }
+
+  function showBook($slug){
+    require MODELS.'/bookModel.php';
+    $selectedBook = getBook($slug);
+    require VIEWS.'/books/show.php';
+  }
+
   function newBookStore(){
     require MODELS."/bookModel.php";
     if (isset($_POST['title']) && isset($_POST['author']) && isset($_POST['description']) && isset($_POST['slug']) && isset($_POST['date'])) {
