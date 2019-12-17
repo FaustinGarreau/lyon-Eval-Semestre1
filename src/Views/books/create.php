@@ -7,7 +7,7 @@ ob_start();
 
     <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Créer un Livre</h1>
     <div class="card bg-white rounded shadow relative">
-        <form action="/livres/nouveau" method="post">
+        <form action="/book/new" method="post">
             <header class="p-4 flex items-center">
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
