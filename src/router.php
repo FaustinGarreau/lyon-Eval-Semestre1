@@ -9,12 +9,31 @@ function run() {
         // fonction qui va être créé dans ce dernier
         bookIndex();
     }
+
     elseif ($url =='/livres/nouveau') {
         require CONTROLLERS.'BookController.php';
         bookCreate();
     }
-    elseif($url =='/articles' && $method == "POST") {
+
+    elseif (preg_match('#^\/livres\/([a-z0-9A-Z-]+)$#',$url,$matches)){         
+        require CONTROLLERS.'BookController.php';
+        bookShow($matches[1]);
+    }
+
+    elseif($url =='/livres' && $method == "POST") {
         require CONTROLLERS . 'BookController.php';
-        bookShow();
+        bookStore();
     } 
+    elseif(preg_match('#^\/livres\/([a-z0-9A-Z-]+)\/delete$#',$url,$matches) && $method == "POST") {
+        require CONTROLLERS . 'BookController.php';
+        bookDelete($matches[1]);
+    }
+    elseif (preg_match('#^\/livres\/([a-z0-9A-Z-]+)\/edit$#',$url,$matches)){       
+        require CONTROLLERS.'BookController.php';
+        bookEdit($matches[1]);
+    }
+    elseif(preg_match('#^\/livres\/([a-z0-9A-Z-]+)$#',$url,$matches) && $method== "POST") {
+        require CONTROLLERS . 'BookController.php';
+        bookUptade($matches[1]);
+    }
 }
