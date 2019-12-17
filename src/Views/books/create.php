@@ -36,6 +36,18 @@ ob_start();
                     <span class="text-red-500 font-bold"><?php echo getError("slug") ?></span>
                 </div>
             </div>
+            <div class="p-4 flex border-b items-center">
+                <label for="category"><i class="fas fa-tag mr-4 text-purple-900"></i></label>
+                <div class="flex-grow">
+                    <select class="" name="category" required>
+                        <option selected="true" disabled="disabled">--- Catégorie ---</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <span class="text-red-500 font-bold"><?php echo getError("category") ?></span>
+                </div>
+            </div>
             <footer class="p-4 flex justify-between items-center">
                 <div class="flex">
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
