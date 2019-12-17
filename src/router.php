@@ -28,6 +28,10 @@ function run() {
             // Create page
             require CONTROLLERS."BookController.php";
             bookShow($matchs[1]);
+        } elseif (match("/livres/?/edit", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookEdit($matchs[1]);
         }
     }
     // Is post request
@@ -36,6 +40,10 @@ function run() {
             // Store
             require CONTROLLERS."BookController.php";
             bookStore();
+        } elseif (match("/livres/?/edit", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookUpdate($matchs[1]);
         }
     }
 }

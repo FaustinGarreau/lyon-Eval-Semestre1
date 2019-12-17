@@ -15,7 +15,7 @@ function getBooks() {
 
 function getBook($slug) {
     global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM book WHERE slug=?");
+    $stmt = $pdo->prepare("SELECT author, title, description, `date`, slug FROM book WHERE slug=?");
     $stmt->execute([$slug]);
     return $stmt->fetch();
 }
@@ -36,7 +36,7 @@ function storeBook($author, $slug, $title, $description, $date) {
 
 function updateBook($slug, $author, $newslug, $title, $description, $date) {
     global $pdo;
-    $stmt = $pdo->prepare("UPDATE article SET
+    $stmt = $pdo->prepare("UPDATE book SET
         author=:author,
         title=:title,
         description=:description,
