@@ -40,16 +40,22 @@ function run() {
     //POST METHOD
     elseif ($method == "POST") {
 
-        //Create book in bdd (POST)
+        //Create book (POST)
         if (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
             require(CONTROLLERS."BookController.php");
             bookStore();
         }
 
-        //Update book in bdd (POST)
+        //Update book (POST)
         elseif (preg_match("#^\/livres\/([\w?-]+)\/?$#", $url, $slug)) {
             require(CONTROLLERS."BookController.php");
             bookUpdate($slug[1]);
+        }
+
+        //Delete book (POST)
+        elseif (preg_match("#^\/livres\/([\w?-]+)\/delete\/?$#", $url, $slug)) {
+            require(CONTROLLERS."BookController.php");
+            bookDelete($slug[1]);
         }
     }
 }

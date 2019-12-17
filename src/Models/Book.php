@@ -19,6 +19,16 @@ function getBook($slug) {
     return $stmt->fetch();
 }
 
+function deleteBook($slug)
+{
+    global $bdd;
+
+    $stmt = $bdd->prepare("DELETE FROM book WHERE slug = :slug");
+    $stmt->execute(array(
+        "slug" => $slug
+    ));
+}
+
 function storeBook() {
     global $bdd;
 

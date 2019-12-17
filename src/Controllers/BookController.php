@@ -38,6 +38,15 @@ function bookEdit($slug) {
 
 // POST FUNCTIONS
 
+//Delete book
+function bookDelete($slug)
+{
+    require(MODELS."Book.php");
+    deleteBook($slug);
+
+    header("Location: /livres");
+}
+
 //Creation Verification
 function bookStore() {
 
@@ -130,7 +139,7 @@ function bookStore() {
         }
 
 
-        //Insert new Article
+        //Insert new book
         if ($validCount == 5) {
 
             storeBook();
@@ -236,7 +245,7 @@ function bookUpdate($lastSlug) {
         }
 
 
-        //Insert new Article
+        //Update book
         if ($validCount == 5) {
 
             updateBook($lastSlug);
