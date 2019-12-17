@@ -48,6 +48,10 @@ function run() {
             // Create page
             require CONTROLLERS."AuthController.php";
             logout();
+        } elseif (match("/categories", $url)) {
+            // Create page
+            require CONTROLLERS."CategoriesController.php";
+            categoriesIndex();
         } else {
             header("Location: /livres/");
         }
@@ -59,21 +63,25 @@ function run() {
             require CONTROLLERS."BookController.php";
             bookStore();
         } elseif (match("/livres/?/edit", $url, $matchs)) {
-            // Update page
+            // Update
             require CONTROLLERS."BookController.php";
             bookUpdate($matchs[1]);
         } elseif (match("/livres/?/delete", $url, $matchs)) {
-            // Delete page
+            // Delete
             require CONTROLLERS."BookController.php";
             bookDelete($matchs[1]);
         } elseif (match("/login", $url)) {
-            // Create page
+            // Login
             require CONTROLLERS."AuthController.php";
             loginUser();
         } elseif (match("/register", $url)) {
-            // Create page
+            // Register
             require CONTROLLERS."AuthController.php";
             registerUser();
+        } elseif (match("/categories/nouvelle", $url)) {
+            // New category
+            require CONTROLLERS."CategoriesController.php";
+            categoryStore();
         }
     }
 }

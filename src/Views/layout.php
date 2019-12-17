@@ -13,13 +13,14 @@
         <div class="container mx-auto flex justify-between">
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
             <nav class="flex">
+                <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <a href="/categories" class="p-4 hover:bg-purple-600 flex items-center">Catégories</a>
                 <?php if (isLogin()): ?>
                     <a href="/logout" class="p-4 hover:bg-purple-600 flex items-center">Déconnexion</a>
                 <?php else: ?>
-                    <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">Login</a>
-                    <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">Register</a>
+                    <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">Connexion</a>
+                    <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">Créer un compte</a>
                 <?php endif; ?>
-                <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
             </nav>
         </div>
     </header>

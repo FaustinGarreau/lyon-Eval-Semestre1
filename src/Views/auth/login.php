@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
-    <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Connexion</h1>
+    <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-users mr-4 text-purple-900"></i>Connexion</h1>
     <div class="card bg-white rounded shadow relative">
         <form action="/login" method="post">
             <div class="p-4 flex items-center border-t">

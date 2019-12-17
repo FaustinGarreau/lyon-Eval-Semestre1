@@ -31,10 +31,10 @@ function loginUser() {
     }
 
     if (!$user) {
-        $_SESSION["errors"]["error"] = "Indetifiant ou mot de passe invalide.";
+        setError("error", "Indetifiant ou mot de passe invalide.");
     }
 
-    if (!isset($_SESSION["errors"])) {
+    if (!hasError()) {
         if (password_verify($password, $user["password"])) {
             $_SESSION['id'] = $user["id"];
             $_SESSION['username'] = $user["username"];
@@ -42,13 +42,13 @@ function loginUser() {
             header("Location: /");
             die();
         }
+        setError("error", "Indetifiant ou mot de passe invalide.");
     }
 
     header("Location: /login/");
 }
 
-function registerUser()
-{
+function registerUser() {
     require MODELS."Users.php";
     $_SESSION["old"] = $_POST;
 
@@ -58,24 +58,24 @@ function registerUser()
     $password_repeat = $_POST["password_repeat"] ?? "";
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["errors"]["email"] = "L'adresse email n'est pas valide.";
+        setError("email", "L'adresse email n'est pas valide.");
     } elseif (getUserByEmail($email)) {
-        $_SESSION["errors"]["email"] = "L'adresse email est déjà utilisée.";
+        setError("email", "L'adresse email est déjà utilisée.");
     }
 
     if(!preg_match('/^[a-zA-Z0-9-_]{2,25}$/', $username)) {
-        $_SESSION["errors"]["username"] = "Le nom d'utilisateur n'est pas valide.";
+        setError("username", "Le nom d'utilisateur n'est pas valide.");
     } elseif (getUserByUsername($username)) {
-        $_SESSION["errors"]["username"] = "Le nom d'utilisateur est déjà pris.";
+        setError("username", "Le nom d'utilisateur est déjà pris.");
     }
 
     if (strlen($password) < 5) {
-        $_SESSION["errors"]["password"] = "Le mot de passe doit contenir au moins 5 caractères.";
+        setError("password", "Le mot de passe doit contenir au moins 5 caractères.");
     } elseif ($password != $password_repeat) {
-        $_SESSION["errors"]["password"] = "Les mots de passe sont différents.";
+        setError("password", "Les mots de passe sont différents.");
     }
 
-    if (!isset($_SESSION["errors"])) {
+    if (!hasError()) {
         $pass = password_hash($password, PASSWORD_BCRYPT);
         $_SESSION['id'] = addUser($username, $email, $pass);
         $_SESSION['username'] = $username;

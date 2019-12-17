@@ -1,13 +1,4 @@
 <?php
-// function getLastBooks($start, $size) {
-//     global $pdo;
-//     $stmt = $pdo->prepare("SELECT title, description, `date`, slug FROM book ORDER BY `date` DESC LIMIT :start_at, :size");
-//     $stmt->bindValue("start_at", $start, PDO::PARAM_INT);
-//     $stmt->bindValue("size", $size, PDO::PARAM_INT);
-//     $stmt->execute();
-//     return $stmt->fetchAll();
-// }
-
 function getBooks() {
     global $pdo;
     return $pdo->query("SELECT title, description, `date`, slug FROM book ORDER BY `date` DESC")->fetchAll();

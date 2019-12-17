@@ -2,29 +2,29 @@
 
 <?php ob_start(); ?>
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
-    <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Créer un compte</h1>
+    <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-plus mr-4 text-purple-900"></i>Créer un compte</h1>
     <div class="card bg-white rounded shadow relative">
         <form action="/register" method="post">
             <div class="p-4 flex items-center border-t">
                 <label for="username"><i class="fas fa-user mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="username" type="text" class="rounded border py-2 px-4 w-full" type="username" autocomplete="name" name="username" placeholder="Nom d'utilisateur" required>
+                    <input id="username" type="text" class="rounded border py-2 px-4 w-full" value="<?php echo getOld("username") ?>" type="username" autocomplete="name" name="username" placeholder="Nom d'utilisateur" required>
                     <span class="text-red-500 font-bold"><?php echo getError("username") ?></span>
                 </div>
             </div>
             <div class="p-4 flex items-center border-t">
                 <label for="email"><i class="fas fa-envelope mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="email" type="email" class="rounded border py-2 px-4 w-full" type="email" autocomplete="email" name="email" placeholder="E-mail" required>
+                    <input id="email" type="email" class="rounded border py-2 px-4 w-full" value="<?php echo getOld("email") ?>" type="email" autocomplete="email" name="email" placeholder="E-mail" required>
                     <span class="text-red-500 font-bold"><?php echo getError("email") ?></span>
                 </div>
             </div>
             <div class="p-4 flex items-center border-t">
                 <label for="password"><i class="fas fa-key mr-4 text-purple-900"></i></label>
-                <div class="flex-grow flex">
+                <div class="flex-grow flex flex-wrap">
                     <input id="password" type="password" class="rounded border py-2 mr-2 px-4 flex-grow" name="password" autocomplete="new-password" placeholder="Mot de passe" required>
                     <input id="password_repeat" type="password" class="rounded border py-2 ml-2 px-4 flex-grow" name="password_repeat" autocomplete="new-password" placeholder="Validation" required>
-                    <span class="text-red-500 font-bold"><?php echo getError("password") ?></span>
+                    <p class="text-red-500 font-bold w-full"><?php echo getError("password") ?></p>
                 </div>
             </div>
             <footer class="p-4 flex justify-end items-center">

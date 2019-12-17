@@ -1,18 +1,28 @@
 <?php
 
-// Return old value
-function getOld($value) {
-    return escape($_SESSION["old"][$value] ?? "");
-}
-
 // Return false if not login, else return true
 function isLogin() {
     return isset($_SESSION["username"]);
 }
 
+// Return old value
+function getOld($value) {
+    return escape($_SESSION["old"][$value] ?? "");
+}
+
 // Return error message
 function getError($value) {
     return escape($_SESSION["errors"][$value] ?? "");
+}
+
+// Set error message
+function setError($error, $message) {
+    $_SESSION["errors"][$error] = $message;
+}
+
+// Return is session contains errors
+function hasError() {
+    return isset($_SESSION["errors"]) ? count($_SESSION["errors"]) > 0 : false;
 }
 
 function escape($string) {
