@@ -11,6 +11,13 @@ function bookCreate() {
     require VIEWS . 'books/create.php';
 }
 
+function bookShow($slug) {
+    require MODELS . 'Book.php';
+    $book = getBook("", $slug);
+
+    require VIEWS . 'books/show.php';
+}
+
 function bookStore() {
     if (isset($_POST["title"]) && isset($_POST["description"])) {
         $_SESSION['old'] = $_POST;
@@ -72,12 +79,12 @@ function bookStore() {
 
        if (!isset($_SESSION["error"])) {
            require MODELS . 'Book.php';
-           $title = getBook("title", $_POST["title"]);
-           $slug = getBook("slug", $_POST["slug"]);
-           if ($title) {
+           $book = getBook($_POST['title'], $_POST['slug']);
+
+           if ($book && $book['title'] == $_POST['title']) {
                $_SESSION["error"]["title"] = "Le titre existe déjà";
                header("Location: /livres/nouveau");
-           } else if ($slug) {
+           } elseif ($book && $book['slug'] == $_POST['slug']) {
                $_SESSION["error"]["slug"] = "Cette URL existe déjà";
                header("Location: /livres/nouveau");
            } else {

@@ -12,12 +12,12 @@ function storeBook() {
     ));
 }
 
-function getBook($who, $value) {
+function getBook($title, $slug) {
     global $bdd;
-    $stmt = $bdd->prepare('SELECT * FROM book WHERE ? = ?');
+    $stmt = $bdd->prepare("SELECT * FROM book WHERE title = :title OR slug = :slug");
     $stmt->execute(array(
-        $who,
-        $value
+        "title" => $title,
+        "slug" => $slug
     ));
     return $stmt->fetch();
 }

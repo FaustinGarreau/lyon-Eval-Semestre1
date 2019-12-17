@@ -8,9 +8,12 @@ function run() {
         if ($url == '/livres') {
             require CONTROLLERS . 'BookController.php';
             bookIndex();
-        } else if ($url == '/livres/nouveau') {
+        } elseif ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookCreate();
+        } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
+            require CONTROLLERS . 'BookController.php';
+            bookShow($slug[1]);
         }
 
     } else {

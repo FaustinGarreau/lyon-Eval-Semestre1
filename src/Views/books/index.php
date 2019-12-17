@@ -20,7 +20,7 @@ ob_start();
                     <footer class="p-4 flex justify-between">
                         <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo $book["date"]; ?></p>
                         <div class="actions">
-                            <a href="/livres/slug" class="p-2 bg-blue-500 hover:bg-blue-600 text-white">
+                            <a href="/livres/<?php echo $book["slug"]; ?>" class="p-2 bg-blue-500 hover:bg-blue-600 text-white">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>
