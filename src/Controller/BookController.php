@@ -26,7 +26,7 @@ function bookStore(){
         } else {
                 Require MODEL . 'Book.php';
                 storeBook();
-                header('Location: /book/' . $_POST['slug']);
+                header('Location: /livres/' . $_POST['slug']);
                 exit();
         }
     }
@@ -42,4 +42,9 @@ function bookIndex(){
     Require MODEL . 'Book.php';
     $books = getBooks();
     require VIEW . 'index.php';
+}
+function bookEdit($param){
+    Require MODEL . 'Book.php';
+    $book = getBook($param);
+    require VIEW . 'edit.php';
 }

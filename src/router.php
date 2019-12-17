@@ -16,7 +16,7 @@ function run() {
         require CONTROLLER . 'BookController.php';
         bookStore(); 
     }
-    elseif (preg_match('#^\/book\/([a-z0-9A-Z-]+)$#', $_SERVER["REQUEST_URI"], $matches)) { 
+    elseif (preg_match('#^\/livres\/([a-z0-9A-Z-]+)$#', $_SERVER["REQUEST_URI"], $matches)) { 
         require CONTROLLER . 'BookController.php';
         bookShow($matches[1]);
     }
@@ -24,6 +24,14 @@ function run() {
         require CONTROLLER . 'BookController.php';
         BookIndex();
     }
+    elseif (preg_match('#^\/livres\/([a-z0-9A-Z-]+)\/edit$#', $_SERVER["REQUEST_URI"], $matches)) { 
+        require CONTROLLER . 'BookController.php';
+        bookEdit($matches[1]);
+    }
+    //elseif (preg_match('#^\/book\/([a-z0-9A-Z-]+)\/delete$#', $_SERVER["REQUEST_URI"], $matches) && $_SERVER['REQUEST_METHOD'] == 'POST') { 
+    //    require CONTROLLER . 'bookController.php';
+    //    bookDelete($matches[1]);
+    //}
 
 
     

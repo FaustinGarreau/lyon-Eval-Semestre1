@@ -13,7 +13,7 @@ function storeBook() {
 function getBook($slug) {
     global $bdd;
     $req = $bdd->query('SELECT * FROM book');
-    return $req->fetchAll();
+    return $req->fetch();
 }
 
 function showBook($slug) {
@@ -31,6 +31,6 @@ function getBooks() {
 }
 function getlastbook() {
     global $bdd;
-    $req = $bdd->query('SELECT * FROM `book` ');
+    $req = $bdd->query('SELECT * FROM book');
     return $req->fetchAll();
 }
