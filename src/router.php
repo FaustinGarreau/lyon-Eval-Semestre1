@@ -16,8 +16,19 @@ function run() {
         require CONTROLLER . 'BookController.php';
         bookStore(); 
     }
+    elseif (preg_match('#^\/book\/([a-z0-9A-Z-]+)$#', $_SERVER["REQUEST_URI"], $matches)) { 
+        require CONTROLLER . 'BookController.php';
+        bookShow($matches[1]);
+    }
+    elseif ($_SERVER["REQUEST_URI"] == '/livres') {
+        require CONTROLLER . 'BookController.php';
+        BookIndex();
+    }
 
 
-
+    
+    else {
+        var_dump('ERROR 404 désolé, cette page n existe pas');
+    }
 
 } 

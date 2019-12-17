@@ -13,13 +13,13 @@ function bookStore(){
             $_SESSION['errors']["slug"] = "Le slug est requis";
         }
         if (empty($_POST["description"])) {
-            $_SESSION['errors']["contenu"] = "La description est requise";
+            $_SESSION['errors']["description"] = "La description est requise";
         }
         if (empty($_POST["author"])) {
-            $_SESSION['errors']["contenu"] = "L'auteur est requis";
+            $_SESSION['errors']["author"] = "L'auteur est requis";
         }
         if (empty($_POST["date"])) {
-            $_SESSION['errors']["contenu"] = "La date de creation est requise";
+            $_SESSION['errors']["date"] = "La date de creation est requise";
         }
         if ($_SESSION["errors"]) {
             header("Location: http://localhost:8000/livres/nouveau");
@@ -27,8 +27,19 @@ function bookStore(){
                 Require MODEL . 'Book.php';
                 storeBook();
                 header('Location: /book/' . $_POST['slug']);
-                exite();
+                exit();
         }
-        
     }
+
+}
+
+function bookShow($param){
+    Require MODEL . 'Book.php';
+    $book = showBook($param);
+    require VIEW . 'show.php';
+}
+function bookIndex(){
+    Require MODEL . 'Book.php';
+    $books = getBooks();
+    require VIEW . 'index.php';
 }

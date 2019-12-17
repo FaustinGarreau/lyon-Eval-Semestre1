@@ -1,7 +1,7 @@
 <?php
 $title = "Créer un nouveau livre";
 ob_start();
-session_start();
+
 ?>
 
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
