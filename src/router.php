@@ -11,6 +11,9 @@ function run() {
         } elseif ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookCreate();
+        } elseif (URL == '/register') {
+            require CONTROLLER . 'AuthController.php';
+            AuthRegister();
         } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
             require CONTROLLERS . 'BookController.php';
             bookShow($slug[1]);
