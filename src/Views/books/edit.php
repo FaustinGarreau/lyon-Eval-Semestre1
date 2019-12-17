@@ -44,12 +44,12 @@ ob_start();
                     </div>
                 </div>
                 <div class="actions flex text-white">
-                    <button type="submit" class="bg-green-500 w-10 h-10">OK</button>
+                    <button type="submit" class="bg-green-500 w-10 h-10 rounded">OK</button>
                 </div>
             </footer>
         </form>
-        <form action="/livres/slug/delete" method="post" class="absolute top-0 right-0 mt-4 mr-4 text-white">
-            <button type="submit" class="ml-4 bg-red-500 w-10 h-10 flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
+        <form action="/livres/<?php echo $book["slug"] ?>/delete" method="post" class="absolute top-0 right-0 mt-4 mr-4 text-white">
+            <button type="submit" class="ml-4 bg-red-500 w-10 h-10 flex justify-center items-center rounded"><i class="fas fa-trash-alt"></i></button>
         </form>
     </div>
 </div>
