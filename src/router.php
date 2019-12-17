@@ -6,6 +6,7 @@ function run() {
 
     if ($url == "/") {
         //Home page
+        header("Location: /livres");
     }
 
     //GET METHOD

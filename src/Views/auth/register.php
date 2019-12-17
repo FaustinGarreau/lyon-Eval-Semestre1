@@ -29,7 +29,8 @@ ob_start();
                     <span class="text-red-500 font-bold"><?php echo error("confirm"); ?></span>
                 </div>
             </div>
-            <footer class="p-4">
+            <footer class="p-4 flex justify-between items-center">
+                <a href="/login" class="underline text-blue-500">Vous avez déjà un compte ?</a>
                 <div class="actions flex text-white">
                     <button type="submit" class="bg-green-500 py-2 px-4 rounded">Créer le compte</button>
                 </div>

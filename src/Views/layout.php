@@ -14,6 +14,13 @@
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
             <nav class="flex">
                 <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <?php if (!isset($_SESSION["username"]) && !isset($_SESSION["userid"])) {
+                    ?>
+                    <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">Se Connecter</a>
+                    <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">Créer un Compte</a>
+                    <?php
+                } ?>
+
             </nav>
         </div>
     </header>
