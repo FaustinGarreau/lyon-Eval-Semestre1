@@ -54,6 +54,7 @@ function bookStore() {
 
     //CHECK POST
     if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["description"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
+
         //store last values
         $_SESSION["old"]["title"] = $_POST["title"];
         $_SESSION["old"]["author"] = $_POST["author"];
@@ -160,6 +161,7 @@ function bookUpdate($lastSlug) {
 
     //CHECK POST
     if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["description"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
+
         //store last values
         $_SESSION["old"]["title"] = $_POST["title"];
         $_SESSION["old"]["author"] = $_POST["author"];

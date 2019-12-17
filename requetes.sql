@@ -21,3 +21,10 @@ Change creation_date date DATE;
 /*Finallement j'ai enlever la contrainte*/
 
 ALTER TABLE book DROP INDEX uq_book_title_author;
+
+CREATE TABLE user (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(80) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

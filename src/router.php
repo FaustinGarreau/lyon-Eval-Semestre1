@@ -12,6 +12,8 @@ function run() {
 
     elseif ($method == "GET") {
 
+        //BOOK (GET)
+
         //Create book page (GET)
         if (preg_match("#^\/livres\/?$#", $url)) {
             require(CONTROLLERS."BookController.php");
@@ -35,10 +37,20 @@ function run() {
             require(CONTROLLERS."BookController.php");
             bookEdit($slug[1]);
         }
+
+        //AUTH (GET)
+
+        //Show register page (GET)
+        elseif (preg_match("#^\/register\/?$#", $url)) {
+            require(CONTROLLERS."AuthController.php");
+            registerPage();
+        }
     }
 
     //POST METHOD
     elseif ($method == "POST") {
+
+        //BOOK (POST)
 
         //Create book (POST)
         if (preg_match("#^\/livres\/nouveau\/?$#", $url)) {
@@ -56,6 +68,14 @@ function run() {
         elseif (preg_match("#^\/livres\/([\w?-]+)\/delete\/?$#", $url, $slug)) {
             require(CONTROLLERS."BookController.php");
             bookDelete($slug[1]);
+        }
+
+        //AUTH (POST)
+
+        //register user (POST)
+        elseif (preg_match("#^\/register\/?$#", $url)) {
+            require(CONTROLLERS."AuthController.php");
+            registerUser();
         }
     }
 }
