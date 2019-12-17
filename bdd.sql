@@ -2,7 +2,7 @@ CREATE DATABASE eval_s1;
 
 USE eval_s1;
 
-CREATE TABLE books (
+CREATE TABLE book (
     id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL unique,

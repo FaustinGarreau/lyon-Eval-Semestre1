@@ -5,25 +5,25 @@ function run() {
     $method = $_SERVER['REQUEST_METHOD'];
     // --- GET ---
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        if ($add == "/") {
+        if ($url == "/") {
             require(CONTROLLERS."homeController.php");
             renderHome();
-        } elseif ($add == "/article") {
-            require(CONTROLLER."articleController.php");
-            article();
-        } elseif ($add == "/article/new") {
+        } elseif ($url == "/livres/nouveau") {
+            require(CONTROLLERS."bookController.php");
+            renderCreateBook();
+        } elseif ($url == "/article/new") {
             require(CONTROLLER."articleController.php");
             newArticles();
-        } elseif (preg_match("/^\/article\/[\w-]+$/", $add)) {
+        } elseif (preg_match("/^\/article\/[\w-]+$/", $url)) {
             require(CONTROLLER."articleController.php");
             onlyOneArticle();
-        } elseif(preg_match("/^\/article\/[\w-]+\/update$/", $add)) {
+        } elseif(preg_match("/^\/article\/[\w-]+\/update$/", $url)) {
             require(CONTROLLER."articleController.php");
             editPageArt();
-        } elseif($add == "/register") {
+        } elseif($url == "/register") {
             require(CONTROLLER."loginController.php");
             registerPage();
-        } elseif ($add == "/login") {
+        } elseif ($url == "/login") {
             require(CONTROLLER."loginController.php");
             loginPage();
         }
@@ -33,26 +33,27 @@ function run() {
     }
     // --- POST ---
     elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if ($add == "/article/new") {
-            require(CONTROLLER."articleController.php");
-            pnewart();
+        if ($url == "/livres/nouveau") {
+            require(CONTROLLERS."bookController.php");
+            newBook();
+            //pnewart();
         }
-        elseif (preg_match("/^\/article\/[\w-]+\/delete$/", $add)) {
+        elseif (preg_match("/^\/article\/[\w-]+\/delete$/", $url)) {
             require(CONTROLLER."articleController.php");
             deleteArt();
             header("Location: /article");
-        } elseif (preg_match("/^\/article\/[\w-]+\/update$/", $add)) {
+        } elseif (preg_match("/^\/article\/[\w-]+\/update$/", $url)) {
             require(CONTROLLER."articleController.php");
             updateArt();
             //header("Location: /article");
-        } elseif ($add == "/register") {
+        } elseif ($url == "/register") {
             require(CONTROLLER."loginController.php");
             newUser();
-        } elseif ($add == "/login") {
+        } elseif ($url == "/login") {
             require(CONTROLLER."loginController.php");
             connect();
             header("Location: /article");
-        } elseif ($add == "/logout") {
+        } elseif ($url == "/logout") {
             require(CONTROLLER."loginController.php");
             logout();
             header("Location: /article");
