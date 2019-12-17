@@ -20,6 +20,14 @@ function run() {
             // Create page
             require CONTROLLERS."BookController.php";
             bookCreate();
+        } elseif (match("/livres", $url)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookIndex();
+        } elseif (match("/livres/?", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookShow($matchs[1]);
         }
     }
     // Is post request

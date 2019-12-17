@@ -3,6 +3,7 @@ session_start();
 
 // all config stuff
 require '../src/config/config.php';
+setlocale(LC_TIME, LANGUAGE);
 
 // all helper function
 require SRC . 'helper.php';

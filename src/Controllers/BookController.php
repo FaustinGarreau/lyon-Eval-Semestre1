@@ -3,6 +3,18 @@ function bookCreate() {
     require VIEWS.'books/create.php';
 }
 
+function bookIndex() {
+    require MODELS."Books.php";
+    $books = getBooks();
+    require VIEWS.'books/index.php';
+}
+
+function bookShow($slug) {
+    require MODELS."Books.php";
+    $book = getBook($slug);
+    require VIEWS.'books/show.php';
+}
+
 function bookStore() {
     $_SESSION["old"] = $_POST;
 

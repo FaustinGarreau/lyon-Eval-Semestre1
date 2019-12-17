@@ -8,6 +8,11 @@
 //     return $stmt->fetchAll();
 // }
 
+function getBooks() {
+    global $pdo;
+    return $pdo->query("SELECT title, description, `date`, slug FROM book ORDER BY `date` DESC")->fetchAll();
+}
+
 function getBook($slug) {
     global $pdo;
     $stmt = $pdo->prepare("SELECT * FROM book WHERE slug=?");
