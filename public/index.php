@@ -13,6 +13,8 @@ try
     $bdd = new PDO('mysql:host=127.0.0.1;dbname=' . DATABASE . ';charset=utf8;' , USER, PASSWORD);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    session_start();
+
     //Use rooter
     require SRC . 'router.php';
     run();
