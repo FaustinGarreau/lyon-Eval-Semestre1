@@ -43,3 +43,13 @@ function booksGet() {
     $books = getBooks();
     require VIEWS . 'books/index.php';
 }
+
+function bookShow($slug) {
+    require MODELS . 'BookModel.php';
+    $book = getBook($slug);
+    if ($book) {
+        require VIEWS . 'books/show.php';
+    } else {
+        header("Location: /books");
+    }
+}

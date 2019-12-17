@@ -23,5 +23,10 @@ function run() {
         booksGet();
     } 
     
+    elseif (preg_match('#^\/books\/([a-zA-Z0-9_-]+)$#',$url,$match)) {
+        require CONTROLLERS . 'BookController.php';
+        bookShow($match[1]);
+    } 
+    
 
 }
