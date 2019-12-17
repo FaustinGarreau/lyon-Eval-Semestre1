@@ -32,4 +32,16 @@ CREATE TABLE users (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE category (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    category VARCHAR(255) NOT NULL UNIQUE,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE book ADD category_id INT UNSIGNED NOT NULL;
+
+ALTER TABLE book ADD CONSTRAINT fk_book_category_id FOREIGN KEY (category_id) REFERENCES category(id);
+
 ```

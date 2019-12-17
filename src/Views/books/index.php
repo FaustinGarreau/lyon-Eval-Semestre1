@@ -2,7 +2,43 @@
 $title = "Tout les livres";
 ob_start();
 ?>
-<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a></h1>
+<div class="mb-5">
+    <h2 class="mb-8 text-2xl font-bold"><i class="fas fa-bookmark mr-4 text-purple-900"></i>Catégories
+        <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Voir +</a>
+    </h2>
+    <div class="flex flex-wrap -mx-4">
+
+        <?php
+            foreach ($categoryFive as $category) {
+                ?>
+                    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
+                        <a href="/livres/category/<?php echo $category["slug"]; ?>" class="pointer">
+                            <div class="card bg-white rounded shadow h-full flex flex-col border-l-4 border-purple-900">
+                                <header class="p-4 font-bold tracking-widest">
+                                    <h3><i class="fas fa-bookmark mr-4 text-purple-900"></i></i><?php echo $category["category"]; ?></h2>
+                                </header>
+                            </div>
+                        </a>
+                    </div>
+                <?php
+            }
+        ?>
+
+    </div>
+</div>
+
+<div>
+
+</div>
+<h2 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres
+    <?php
+        if (isset($_SESSION["user"])) {
+            ?>
+                <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a>
+            <?php
+        }
+     ?>
+</h2>
 <div class="flex flex-wrap -mx-4">
 
     <?php

@@ -4,11 +4,18 @@ function bookIndex() {
     require MODELS . 'Book.php';
     $books = getBooks();
 
+    require MODELS . 'Category.php';
+    $categoryFive = getCategoryFive();
+
     require VIEWS . 'books/index.php';
 }
 
 function bookCreate() {
-    require VIEWS . 'books/create.php';
+    if (isset($_SESSION["user"])) {
+        require VIEWS . 'books/create.php';
+    } else {
+        header("Location: /livres");
+    }
 }
 
 function bookShow($slug) {
@@ -19,20 +26,30 @@ function bookShow($slug) {
 }
 
 function bookEdit($slug) {
-    require MODELS . 'Book.php';
-    $book = getbook("", $slug);
+    if (isset($_SESSION["user"])) {
+        require MODELS . 'Book.php';
+        $book = getbook("", $slug);
 
-    require VIEWS . 'books/edit.php';
+        require VIEWS . 'books/edit.php';
+    } else {
+        header("Location: /livres");
+    }
 }
 
 function bookDelete($slug) {
-    require MODELS . 'Book.php';
-    deleteBook($slug);
-    header('Location: /livres');
+    if (isset($_SESSION["user"])) {
+        require MODELS . 'Book.php';
+        deleteBook($slug);
+        header('Location: /livres');
+    } else {
+        header("Location: /livres");
+    }
 }
 
 function bookUpdate($slug) {
-    if (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
+    if (!isset($_SESSION["user"])) {
+        header('Location: /livres');
+    } elseif (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
 
         if (!escape($_POST['title'])) {
             $_SESSION["error"]["title"] = "Ce champ est requis";
@@ -114,7 +131,9 @@ function bookUpdate($slug) {
 }
 
 function bookStore() {
-    if (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
+    if (!isset($_SESSION["user"])) {
+        header('Location: /livres');
+    } elseif (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
         $_SESSION['old'] = $_POST;
 
         if (!escape($_POST['title'])) {

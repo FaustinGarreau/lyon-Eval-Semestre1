@@ -14,6 +14,19 @@
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
             <nav class="flex">
                 <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <?php
+                    if (!isset($_SESSION["user"])) {
+                        ?>
+                            <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">Login</a>
+                            <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">Register</a>
+                        <?php
+                    } else {
+                        ?>
+                            <p class="p-4 hover:bg-purple-600 flex items-center"><?php echo $_SESSION["user"]["username"]; ?></p>
+                            <a href="/logout" class="p-4 hover:bg-purple-600 flex items-center"><i class="fas fa-power-off"></i></a>
+                        <?php
+                    }
+                ?>
             </nav>
         </div>
     </header>
