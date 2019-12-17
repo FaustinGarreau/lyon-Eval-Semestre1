@@ -1,15 +1,14 @@
 <?php
 
-function getError($name) {
+function escape($data) {return htmlspecialchars(stripslashes(trim($data))); }
+
+function error($name) {
     return escape($_SESSION["error"][$name] ?? "");
 }
 
-function getLastValue($name) {
+function old($name) {
     return escape($_SESSION["old"][$name] ?? "");
 }
-
-function escape($data) {return htmlspecialchars(stripslashes(trim($data))); }
-
 
 function slugify($text)
 {

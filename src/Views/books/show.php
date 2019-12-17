@@ -6,7 +6,7 @@ ob_start();
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
     <div class="card bg-white rounded shadow border-l-4 border-purple-900">
         <header class="p-4 font-bold tracking-widest">
-            <h3><i class="fas fa-heading mr-4 text-purple-900">Titre</h2>
+            <h3><i class="fas fa-heading mr-4 text-purple-900">Titre</i></h3>
         </header>
         <div class="content border-t p-4 flex-grow flex items-center">
             <i class="fas fa-user mr-4 text-purple-900"></i>

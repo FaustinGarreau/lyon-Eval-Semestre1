@@ -1,5 +1,4 @@
 <?php
-
 // all config stuff
 require '../src/config/config.php';
 

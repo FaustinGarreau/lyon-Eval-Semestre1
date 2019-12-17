@@ -14,3 +14,10 @@ CREATE TABLE book (
     creation_date DATE NOT NULL,
     CONSTRAINT uq_book_title_author UNIQUE(title, author)
 );
+
+ALTER TABLE book
+Change creation_date date DATE;
+
+/*Finallement j'ai enlever la contrainte*/
+
+ALTER TABLE book DROP INDEX uq_book_title_author;
