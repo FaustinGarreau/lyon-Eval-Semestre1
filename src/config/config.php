@@ -6,6 +6,6 @@ define("MODELS", '../src/Models/');
 define("VIEWS", '../src/Views/');
 
 // database
-define('DATABASE', 'eval_s1');
+define('DATABASE', 'eval');
 define('USER', 'root');
 define('PASSWORD', 'root');
