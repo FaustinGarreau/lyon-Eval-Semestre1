@@ -13,9 +13,9 @@ Créer une base de donnée avec le nom `eval_s1`
 Cette table doit avoir les champs suivant:
 
 - id
-- title 
+- title
 - author
-- slug 
+- slug
 - description
 - date
 
@@ -51,7 +51,7 @@ Créer le model appelé par le controller ainsi que la fonction appelée par le 
 
 Créer la vue qui affiche le formulaire pour un créer un nouveau livre
 
-Exemple: 
+Exemple:
 ![index](create.png)
 
 ## Etape 4 - Voir tout les livres
@@ -80,7 +80,7 @@ Créer le model appelé par le controller ainsi que la fonction appelée par le 
 
 Créer la vue qui affiche le formulaire pour un créer un nouveau livre
 
-Exemple: 
+Exemple:
 ![index](index.png)
 
 ## Etape 5 - Voir un seul livre
@@ -109,7 +109,7 @@ Créer le model appelé par le controller ainsi que la fonction appelée par le 
 
 Créer la vue qui affiche le formulaire pour un créer un nouveau livre
 
-Exemple: 
+Exemple:
 ![index](show.png)
 
 
@@ -139,7 +139,7 @@ Créer le model appelé par le controller ainsi que la fonction appelée par le 
 
 Créer la vue qui affiche le formulaire pour un créer un nouveau livre
 
-Exemple: 
+Exemple:
 ![index](edit.png)
 
 ## Etape 7 - Supprimer un livres

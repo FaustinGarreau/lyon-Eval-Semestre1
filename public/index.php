@@ -7,9 +7,18 @@ require '../src/config/config.php';
 require SRC . 'helper.php';
 
 //database connexion
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=' . DATABASE . ';charset=utf8;' , USER, PASSWORD);
+try
+{
+    //bdd conection
+    $bdd = new PDO('mysql:host=127.0.0.1;dbname=' . DATABASE . ';charset=utf8;' , USER, PASSWORD);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// parsing URL
-require SRC . 'router.php';
+    //Use rooter
+    require SRC . 'router.php';
+    run();
 
-run();
+}
+catch (Exception $e)
+{
+    die('Erreur : ' . $e->getMessage());
+}
