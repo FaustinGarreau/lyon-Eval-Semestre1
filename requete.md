@@ -1,0 +1,11 @@
+CREATE TABLE book (
+    -> id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> title VARCHAR(255) NOT NULL,
+    -> author VARCHAR(255) NOT NULL,
+    -> slug VARCHAR(255) NOT NULL UNIQUE,
+    -> description TEXT NOT NULL,
+    -> date DATE
+    ->);
+
+ALTER TABLLE DROP COLUMN slug;
+ALTER TABLLE book ADD slug VARCHAR(255) NOT NULL UNIQUE;

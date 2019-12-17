@@ -5,17 +5,18 @@ ob_start();
 <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a></h1>
 <div class="flex flex-wrap -mx-4">
 
+<?php foreach ($livre as $livre) { ?>
         <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
             <div class="card bg-white rounded shadow h-full flex flex-col border-l-4 border-purple-900">
                 <header class="p-4 font-bold tracking-widest">
-                    <h3><i class="fas fa-heading mr-4 text-purple-900"></i>titre</h2>
+                    <h3><i class="fas fa-heading mr-4 text-purple-900"></i><p> <?php echo $livre['title']?></p></h2>
                 </header>
                 <div class="content border-t border-b p-4 flex-grow flex items-center">
                     <i class="fas fa-book-open mr-4 text-purple-900"></i>
-                    description
+                    <p><?php echo $livre['description'] ?></p>
                 </div>
                 <footer class="p-4 flex justify-between">
-                    <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le date</p>
+                    <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><p><?php echo $livre['date'] ?></p></p>
                     <div class="actions">
                         <a href="/livres/slug" class="p-2 bg-blue-500 hover:bg-blue-600 text-white">
                             <i class="fas fa-eye"></i>
@@ -24,7 +25,10 @@ ob_start();
                 </footer>
             </div>
         </div>
+    <?php } ?>
 </div>
+
+
 
 <?php
 
