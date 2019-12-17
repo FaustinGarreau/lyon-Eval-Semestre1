@@ -29,12 +29,15 @@ function bookStore() {
         }
         if (!isset($_SESSION['errors'])) {
             require MODELS .'livre.php';
-            bookCreate();
-            header('Location : /livres');
+
+        
+
+            storeBook($slug);
+            header('Location: /livres');
+            exit();
         }
         else {
-            header('Location : /livres/nouveau');
+            header('Location: /livres/nouveau');
         }
     }
-
-} 
+}

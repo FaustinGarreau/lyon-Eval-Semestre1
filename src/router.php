@@ -8,7 +8,7 @@ function run() {
         require CONTROLLER .'livreController.php';
         bookIndex();
     }
-    elseif ($url == '/livres' && $method == "POST") {
+    elseif ($url == '/livres/nouveau' && $method == "POST") {
         require CONTROLLER .'livreController.php';
         bookStore();
     }
