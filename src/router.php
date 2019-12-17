@@ -15,8 +15,8 @@ function run() {
             require(CONTROLLERS."bookController.php");
             renderBooks();
         } elseif (preg_match("/^\/article\/[\w-]+$/", $url)) {
-            require(CONTROLLER."articleController.php");
-            onlyOneArticle();
+            require(CONTROLLERS."bookController.php");
+            renderBook();
         } elseif(preg_match("/^\/article\/[\w-]+\/update$/", $url)) {
             require(CONTROLLER."articleController.php");
             editPageArt();

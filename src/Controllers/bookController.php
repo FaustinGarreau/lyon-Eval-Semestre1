@@ -9,6 +9,10 @@ function renderBooks() {
     require(MODELS."book.php");
     require(VIEWS."/books/index.php");
 }
+function renderBook() {
+    require(MODELS."book.php");
+    require(VIEWS."/books/show.php");
+}
 // post
 function newBook() {
     $_SESSION["error"]["newBook"] = [];
@@ -47,9 +51,9 @@ function newBook() {
             "description" => escape($_POST["description"]),
             "date" => escape($_POST["date"])
         ]);
-        header("Location : /livres/nouveau");
+        header("Location: /livres");
     }
-    header("Location : /livres/nouveau");
+    header("Location: /livres/nouveau");
 
 }
 
