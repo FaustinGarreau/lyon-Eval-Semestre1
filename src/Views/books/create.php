@@ -40,7 +40,7 @@ ob_start();
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
                     <div class="">
                         <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo old('newBook','date');?>">
-                        <?php error("newBook", "data"); ?>
+                        <?php error("newBook", "date"); ?>
                     </div>
                 </div>
                 <div class="actions flex text-white">

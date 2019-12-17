@@ -14,21 +14,14 @@ function run() {
         } elseif ($url == "/livres") {
             require(CONTROLLERS."bookController.php");
             renderBooks();
-        } elseif (preg_match("/^\/article\/[\w-]+$/", $url)) {
+        } elseif (preg_match("/^\/livres\/[\w-]+$/", $url)) {
             require(CONTROLLERS."bookController.php");
             renderBook();
-        } elseif(preg_match("/^\/article\/[\w-]+\/update$/", $url)) {
-            require(CONTROLLER."articleController.php");
-            editPageArt();
-        } elseif($url == "/register") {
-            require(CONTROLLER."loginController.php");
-            registerPage();
-        } elseif ($url == "/login") {
-            require(CONTROLLER."loginController.php");
-            loginPage();
-        }
-        else {
-            require(VIEW."404.html");
+        } elseif(preg_match("/^\/livres\/[\w-]+\/edit$/", $url)) {
+            require(CONTROLLERS."bookController.php");
+            renderEditPage();
+        } else {
+            //require(VIEW."404.html");
         }
     }
     // --- POST ---
@@ -36,16 +29,13 @@ function run() {
         if ($url == "/livres/nouveau") {
             require(CONTROLLERS."bookController.php");
             newBook();
-            //pnewart();
         }
-        elseif (preg_match("/^\/article\/[\w-]+\/delete$/", $url)) {
-            require(CONTROLLER."articleController.php");
-            deleteArt();
-            header("Location: /article");
-        } elseif (preg_match("/^\/article\/[\w-]+\/update$/", $url)) {
-            require(CONTROLLER."articleController.php");
-            updateArt();
-            //header("Location: /article");
+        elseif (preg_match("/^\/livres\/[\w-]+\/delete$/", $url)) {
+            require(CONTROLLERS."bookController.php");
+            deleteBook();
+        } elseif (preg_match("/^\/livres\/[\w-]+\/edit$/", $url)) {
+            require(CONTROLLERS."bookController.php");
+            updateBook();
         } elseif ($url == "/register") {
             require(CONTROLLER."loginController.php");
             newUser();
