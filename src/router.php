@@ -6,14 +6,14 @@ function run() {
     // --- GET ---
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if ($url == "/") {
-            require(CONTROLLERS."homeController.php");
-            renderHome();
+            //require(CONTROLLERS."homeController.php");
+            //renderHome();
         } elseif ($url == "/livres/nouveau") {
             require(CONTROLLERS."bookController.php");
             renderCreateBook();
-        } elseif ($url == "/article/new") {
-            require(CONTROLLER."articleController.php");
-            newArticles();
+        } elseif ($url == "/livres") {
+            require(CONTROLLERS."bookController.php");
+            renderBooks();
         } elseif (preg_match("/^\/article\/[\w-]+$/", $url)) {
             require(CONTROLLER."articleController.php");
             onlyOneArticle();
