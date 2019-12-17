@@ -1,6 +1,9 @@
 <?php
 
-function home() {
+function bookIndex() {
+    require MODELS . 'Book.php';
+    $books = getBooks();
+
     require VIEWS . 'books/index.php';
 }
 
@@ -79,7 +82,7 @@ function bookStore() {
                header("Location: /livres/nouveau");
            } else {
                storeBook();
-               header('Location: /');
+               header('Location: /livres');
            }
 
        } else {

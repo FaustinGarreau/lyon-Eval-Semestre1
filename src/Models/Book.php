@@ -21,3 +21,9 @@ function getBook($who, $value) {
     ));
     return $stmt->fetch();
 }
+
+function getBooks() {
+    global $bdd;
+    $req = $bdd->query('SELECT * FROM book ORDER BY date DESC');
+    return $req->fetchAll();
+}

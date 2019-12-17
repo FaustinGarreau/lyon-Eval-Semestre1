@@ -5,9 +5,9 @@ function run() {
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method != 'POST') {
-        if ($url == '/') {
+        if ($url == '/livres') {
             require CONTROLLERS . 'BookController.php';
-            home();
+            bookIndex();
         } else if ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookCreate();
