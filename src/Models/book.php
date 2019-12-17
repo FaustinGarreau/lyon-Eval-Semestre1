@@ -1,7 +1,6 @@
 <?php
 
 function storeBook() {
-    
     global $bdd;
     $req = $bdd->prepare('INSERT INTO book (title,author,description,slug,date) VALUES (:title, :author, :description, :slug, :date )');
     $req->execute([
