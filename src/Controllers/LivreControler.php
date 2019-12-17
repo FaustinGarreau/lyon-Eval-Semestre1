@@ -31,6 +31,10 @@ function livreStore(){
             $_SESSION['errors']['slug'] = 'Le champ slug est requis';
         }
 
+        if (empty($_POST['date'])) {
+            $_SESSION['errors']['date'] = 'Le champ date est requis';
+        }
+
         if (!isset($_SESSION['errors'])) {
                 //model
             require MODELS.'Livre.php';
@@ -39,20 +43,16 @@ function livreStore(){
             // redirige vers  livre header()
             header('location: /livres/' . $_POST['slug']);
             exit();
-        } else {
-            header('Location: /livres/nouveau');
-            exit();
         }
     }
-    else {
-        header('Location: /livres/nouveau');
-    }
+    header('Location: /livres/nouveau');
+    exit();
 }
 function livreEdit($slug){
     // recuperer livre => 
     require MODELS.'Livre.php';
     $book = getLivre($slug);
-    require VIEWS.'books    /edit.php';
+    require VIEWS.'books/edit.php';
 }
 function livreUpdate($slug){
 

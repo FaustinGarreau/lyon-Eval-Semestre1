@@ -27,11 +27,12 @@ function storeLivre(){
 function updateLivre($slug){
     global $bdd;
     // modifier les champs
-    $req = $bdd->prepare('UPDATE book SET title = :title, auhtor = :author, slug= :slugPost WHERE slug = :slug');
+    $req = $bdd->prepare('UPDATE book SET title = :title, author = :author, description = :description, slug= :slugPost, date = :date WHERE slug = :slug');
     $req->execute([
         "slug" => $slug,
         "title" => $_POST['title'],
         "author" => $_POST['author'],
+        "description" => $_POST['description'],
         "slugPost" => $_POST['slug'],
         "date" => $_POST['date']
     ]);
