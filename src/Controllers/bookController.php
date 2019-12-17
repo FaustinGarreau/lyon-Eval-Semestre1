@@ -12,15 +12,27 @@ function bookStore() {
         $_SESSION['author'] = $_POST['author'];
         $_SESSION['slug'] = $_POST['slug'];
         $_SESSION['date'] = $_POST['date'];
-        if (empty($_POST['title'])) {
-            $_SESSION['errors']['titleErr'] = "le title est requis";
+        if (empty($_SESSION['title'])) {
+            $_SESSION['errors']['titleError'] = "le title est requis";
+        }else if (!preg_match('#^[A-Za-z-]{2,}$#', $_SESSION['title'])) {
+            $_SESSION['errors']['titleError'] = "Format incorrect (au moins 2 caractères)";
+        } else {
+            $_SESSION['title'] = $_SESSION['title'];
         }
-        if (empty($_POST['description'])) {
-            $_SESSION['errors']['descErr'] = "le contenu est requis";
+        if (empty($_SESSION['author'])) {
+            $_SESSION['errors']['authorError'] = "l'auteur est requis";
+        }else if (!preg_match('#^[A-Za-z-]{1,}$#', $_SESSION['author'])) {
+            $_SESSION['errors']['authorError'] = "Format incorrect il ne faut que des lettres ou des -";
+        } else {
+            $_SESSION['author'] = $_SESSION['author'];
         }
-        if (empty($_POST['author'])) {
-            $_SESSION['errors']['authorErr'] = "le contenu est requis";
-        }
+        if (empty($_SESSION['description'])) {
+            $_SESSION['errors']['descriptionError'] = "la description est requis";
+        }else if (!preg_match('#^[A-Za-z-() ]{1,}$#', $_SESSION['description'])) {
+            $_SESSION['errors']['descriptionError'] = "Format incorrect il ne faut que des lettres, de - ou des ()";
+        } else {
+            $_SESSION['description'] = $_SESSION['description'];
+            }
         if (empty($_POST['slug'])) {
             $_SESSION['errors']['slugErr'] = "le contenu est requis";
         }
@@ -29,6 +41,18 @@ function bookStore() {
         }
         if (!isset($_SESSION['errors'])) {
             require MODELS.'book.php';
+            $title = gettitle($_POST['title']);
+            $slug = getBook($_POST['slug']);
+            if ($title) {
+                $_SESSION['errors']['titleErr'] = 'Le titre est déjà pris';
+                header('Location: /livres/nouveau');
+                exit();
+            }
+            if ($slug) {
+                $_SESSION['errors']['slugErr'] = 'Le slug est déjà pris';
+                header('Location: /livres/nouveau');
+                exit();
+            }
             storeBook();
             header('Location: /livres/' . $_POST['slug']);
         } else {

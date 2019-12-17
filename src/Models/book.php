@@ -48,3 +48,12 @@ function deletebook($slug) {
         "slug" => $slug
     ]);
 }
+
+function gettitle($title){
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM book WHERE title = :title');
+    $req->execute([
+        'title' => $title,
+    ]);
+    return $req->fetch();
+}

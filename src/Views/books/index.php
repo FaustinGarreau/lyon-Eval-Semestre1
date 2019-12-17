@@ -14,7 +14,7 @@ ob_start();
                 </header>
                 <div class="content border-t border-b p-4 flex-grow flex items-center">
                     <i class="fas fa-book-open mr-4 text-purple-900"></i>
-                    <?php echo $book['description']; ?>
+                    <?php echo substr($book ["description"], 0, 20); ?> ...
                 </div>
                 <footer class="p-4 flex justify-between">
                     <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo $book['date']; ?></p>
