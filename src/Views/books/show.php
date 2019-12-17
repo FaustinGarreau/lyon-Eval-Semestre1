@@ -19,7 +19,7 @@ ob_start();
         <footer class="p-4 flex justify-between items-center">
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo escape($book['created_at']); ?></p>
             <div class="actions flex">
-                <a href="/livres/<?php echo escape($book['author']); ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
+                <a href="/book/<?php echo escape($book['author']); ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                     <i class="fas fa-edit"></i>
                 </a>
                 <form action="/livres/<?php echo escape($book['author']); ?>/delete" method="post">
