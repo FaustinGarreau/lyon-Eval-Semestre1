@@ -23,6 +23,12 @@ function run() {
             require(CONTROLLERS."BookController.php");
             bookCreate();
         }
+
+        //Create book page (GET)
+        elseif (preg_match("#^\/livres\/([\w?-]+)\/?$#", $url, $slug)) {
+            require(CONTROLLERS."BookController.php");
+            bookShow($slug[1]);
+        }
     }
 
     //POST METHOD

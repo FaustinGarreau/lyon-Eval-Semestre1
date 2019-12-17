@@ -11,6 +11,14 @@ function bookIndex()
     require(VIEWS.'books/index.php');
 }
 
+function bookShow($slug) {
+    require(MODELS."Book.php");
+    $book = getBook($slug);
+
+    //require VIEW
+    require(VIEWS.'books/show.php');
+}
+
 function bookCreate() {
     //require VIEW
     require(VIEWS.'books/create.php');
