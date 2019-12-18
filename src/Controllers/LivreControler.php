@@ -21,6 +21,8 @@ function livreStore(){
         // si vide => erreur
         if (empty($_POST['title'])) {
             $_SESSION['errors']['title'] = 'Le champ titre est requis';
+        } elseif (preg_match) {
+            # code...
         }
 
         if (empty($_POST['author'])) {
@@ -33,6 +35,8 @@ function livreStore(){
 
         if (empty($_POST['slug'])) {
             $_SESSION['errors']['slug'] = 'Le champ slug est requis';
+        } elseif (!preg_match('#^([A-Za-z0-9-]+)$#', $_POST['slug'])) {
+            $_SESSION['errors']['slug'] = 'votre slug doit contenir uniquement des caractère comme (a-z-0-9)';
         }
 
         if (empty($_POST['date'])) {
