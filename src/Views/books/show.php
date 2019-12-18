@@ -25,7 +25,7 @@ ob_start();
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le <?php echo date_format($date,"d M Y"); ?></p>
             <div class="actions flex">
                 <?php
-                    if (isset($_SESSION["user"])) {
+                    if (isset($_SESSION["user"]) && ($book["user_id"] == $_SESSION["user"]["id"]) || $_SESSION["user"]["role"] == "admin") {
                         ?>
                             <a href="/livres/<?php echo escape($book["bookSlug"]); ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                                 <i class="fas fa-edit"></i>

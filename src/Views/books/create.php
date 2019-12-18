@@ -5,6 +5,7 @@ ob_start();
 
 <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto p-4">
 
+
     <h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Créer un Livre</h1>
     <div class="card bg-white rounded shadow relative">
         <form action="/livres/nouveau" method="post">
@@ -55,12 +56,13 @@ ob_start();
             <footer class="p-4 flex justify-between items-center">
                 <div class="flex">
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
-                    <div class="">
+                    <div>
                         <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo old('date');?>">
                         <span class="text-red-500 font-bold"><?php echo error("date");?></span>
                     </div>
                 </div>
                 <div class="actions flex text-white">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION["user"]["id"]; ?>">
                     <button type="submit" class="bg-green-500 py-2 px-4 rounded">Créer</button>
                 </div>
             </footer>

@@ -18,14 +18,15 @@ function getBooks() {
 
 function storeBook() {
     global $bdd;
-    $stmt = $bdd->prepare("INSERT INTO book(title, description, date, author, slug, category_id) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $bdd->prepare("INSERT INTO book(title, description, date, author, slug, category_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute(array(
         $_POST["title"],
         $_POST["description"],
         $_POST["date"],
         $_POST["author"],
         $_POST["slug"],
-        $_POST["category"]
+        $_POST["category"],
+        $_POST["user_id"]
     ));
 }
 

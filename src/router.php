@@ -14,6 +14,9 @@ function run() {
         } elseif ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookCreate();
+        } elseif ($url == '/category/nouveau') {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryCreate();
         } elseif ($url == '/register') {
             require CONTROLLERS . 'AuthController.php';
             AuthRegister();
@@ -32,6 +35,9 @@ function run() {
         } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)\/edit$#', $url, $slug)) {
             require CONTROLLERS . 'BookController.php';
             bookEdit($slug[1]);
+        } elseif (preg_match('#^\/category\/([a-zA-Z0-9-]+)\/edit$#', $url, $slug)) {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryEdit($slug[1]);
         } else {
             require CONTROLLERS . 'BookController.php';
             bookIndex();
@@ -41,6 +47,9 @@ function run() {
         if ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookStore();
+        } elseif ($url == '/category/nouveau') {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryStore();
         } elseif ($url == '/register') {
             require CONTROLLERS . 'AuthController.php';
             AuthRegisterTraitement();
@@ -50,9 +59,15 @@ function run() {
         } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
             require CONTROLLERS . 'BookController.php';
             bookUpdate($slug[1]);
+        } elseif (preg_match('#^\/category\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryUpdate($slug[1]);
         } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)\/delete$#', $url, $slug)) {
             require CONTROLLERS . 'BookController.php';
             bookDelete($slug[1]);
+        } elseif (preg_match('#^\/category\/([a-zA-Z0-9-]+)\/delete$#', $url, $slug)) {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryDelete($slug[1]);
         } else {
             require CONTROLLERS . 'BookController.php';
             bookIndex();
