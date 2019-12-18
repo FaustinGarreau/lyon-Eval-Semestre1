@@ -18,7 +18,7 @@ ob_start();
                   <?php echo $book['description']; ?>
                 </div>
                 <footer class="p-4 flex justify-between">
-                  <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo $book['date']; ?></p>
+                  <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo date("d/m/Y", strtotime($book['date'])); ?></p>
                   <div class="actions">
                     <a href="/book/<?php echo $book['slug']?>" class="p-2 bg-blue-500 hover:bg-blue-600 text-white">
                         <i class="fas fa-eye"></i>

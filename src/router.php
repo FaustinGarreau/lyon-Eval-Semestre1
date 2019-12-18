@@ -45,7 +45,7 @@ function run() {
       showBook($matches[1]);
     }
 
-
+  //si lien bon (pour afficher la page edit)
     elseif (preg_match('#^\/book\/([a-zA-Z0-9_-]+)\/edit$#', $_SERVER['REQUEST_URI'], $matches )) {
       //Affiche la page qui permet d'editer un article
       require CONTROLLERS.'/BookController.php';

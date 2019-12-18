@@ -9,28 +9,28 @@ ob_start();
             <header class="p-4 flex items-center">
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="title" type="text" name="title" value="<?php echo $selectedBook['title'] ?>" class="w-10/12 rounded border py-2 px-4">
+                    <input id="title" type="text" name="title" value="<?php echo isset($_SESSION['old']) ? old('title') : $selectedBook['title']; ?>" class="w-10/12 rounded border py-2 px-4">
                     <span class="text-red-500 font-bold w-full"><?php echo error('title'); ?></span>
                 </div>
             </header>
             <div class="p-4 flex items-center border-t">
                 <label for="author"><i class="fas fa-user mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="title" type="text" name="author" value="<?php echo $selectedBook['author'] ?>" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
+                    <input id="title" type="text" name="author" value="<?php echo isset($_SESSION['old']) ? old('author') : $selectedBook['author'] ?>" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
                     <span class="text-red-500 font-bold"><?php echo error('author'); ?></span>
                 </div>
             </div>
             <div class="content border-t border-b p-4 flex-grow flex items-center">
                 <label for="description"><i class="fas fa-book-open mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <textarea name="description" id="description" rows="10" class="w-full rounded border py-2 px-4"><?php echo $selectedBook['description'] ?></textarea>
+                    <textarea name="description" id="description" rows="10" class="w-full rounded border py-2 px-4"><?php echo isset($_SESSION['old']) ? old('description') : $selectedBook['description'] ?></textarea>
                     <span class="text-red-500 font-bold"><?php echo error('description'); ?></span>
                 </div>
             </div>
             <div class="p-4 flex border-b items-center">
                 <label for="slug"><i class="fas fa-globe mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="slug" type="text" name="slug" value="<?php echo $selectedBook['slug'] ?>" class="w-full rounded border py-2 px-4">
+                    <input id="slug" type="text" name="slug" value="<?php echo isset($_SESSION['old']) ? old('slug') : $selectedBook['slug'] ?>" class="w-full rounded border py-2 px-4">
                     <span class="text-red-500 font-bold"><?php echo error('slug'); ?></span>
                 </div>
             </div>
@@ -38,7 +38,7 @@ ob_start();
                 <div class="flex">
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
                     <div class="flew-grow">
-                        <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo $selectedBook['date'] ?>">
+                        <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo isset($_SESSION['old']) ? old('date') : $selectedBook['date'] ?>">
                         <span class="text-red-500 font-bold"><?php echo error('date'); ?></span>
                     </div>
                 </div>
