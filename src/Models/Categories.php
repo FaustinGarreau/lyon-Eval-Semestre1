@@ -11,6 +11,13 @@ function getCategory($slug) {
     return $stmt->fetch();
 }
 
+function getCategoryById($id) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT * FROM category WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch();
+}
+
 function addCategory($category, $slug) {
     global $pdo;
     $stmt = $pdo->prepare("INSERT INTO category (category, slug) VALUES (?, ?)");

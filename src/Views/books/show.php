@@ -15,6 +15,10 @@ ob_start();
             <p><?php echo escape($book['author']) ?></p>
         </div>
         <div class="content border-t border-b p-4 flex-grow flex items-center">
+            <i class="fas fa-bookmark mr-4 text-purple-900"></i>
+            <?php echo escape($book['category']) ?>
+        </div>
+        <div class="content border-t border-b p-4 flex-grow flex items-center">
             <i class="fas fa-book-open mr-4 text-purple-900"></i>
             <?php echo escape($book['description']) ?>
         </div>
@@ -22,10 +26,10 @@ ob_start();
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le <?php echo $date ?></p>
             <div class="actions flex">
                 <?php if (isLogin()): ?>
-                    <a href="/livres/<?php echo escape($book["slug"]) ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
+                    <a href="/livres/livre/<?php echo escape($book["slug"]) ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <form action="/livres/<?php echo escape($book["slug"]) ?>/delete" method="post">
+                    <form action="/livres/livre/<?php echo escape($book["slug"]) ?>/delete" method="post">
                         <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 <?php endif; ?>

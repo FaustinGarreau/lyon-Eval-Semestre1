@@ -24,15 +24,19 @@ function run() {
             // Create page
             require CONTROLLERS."BookController.php";
             bookIndex();
-        } elseif (match("/livres/?", $url, $matchs)) {
+        } elseif (match("/livres/categories/?", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookIndexCategory($matchs[1]);
+        } elseif (match("/livres/livre/?", $url, $matchs)) {
             // Create page
             require CONTROLLERS."BookController.php";
             bookShow($matchs[1]);
-        } elseif (match("/livres/?/edit", $url, $matchs)) {
+        } elseif (match("/livres/livre/?/edit", $url, $matchs)) {
             // Create page
             require CONTROLLERS."BookController.php";
             bookEdit($matchs[1]);
-        } elseif (match("/livres/?/edit", $url, $matchs)) {
+        } elseif (match("/livres/livre/?/edit", $url, $matchs)) {
             // Create page
             require CONTROLLERS."BookController.php";
             bookEdit($matchs[1]);
@@ -62,11 +66,11 @@ function run() {
             // Store
             require CONTROLLERS."BookController.php";
             bookStore();
-        } elseif (match("/livres/?/edit", $url, $matchs)) {
+        } elseif (match("/livres/livre/?/edit", $url, $matchs)) {
             // Update
             require CONTROLLERS."BookController.php";
             bookUpdate($matchs[1]);
-        } elseif (match("/livres/?/delete", $url, $matchs)) {
+        } elseif (match("/livres/livre/?/delete", $url, $matchs)) {
             // Delete
             require CONTROLLERS."BookController.php";
             bookDelete($matchs[1]);

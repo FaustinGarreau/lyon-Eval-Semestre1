@@ -26,7 +26,7 @@ ob_start();
         <tbody>
             <?php foreach ($categories as $category): ?>
                 <tr>
-                    <td class="border px-4 py-2"><?php echo escape($category["category"]) ?></td>
+                    <td class="border px-4 py-2"><a href="/livres/categories/<?php echo escape($category["slug"]) ?>" class="block w-100 h-100"><?php echo escape($category["category"]) ?></a></td>
                     <?php if (isLogin()): ?>
                         <td class="border px-4 py-2 flex justify-center">
                             <form action="/categories/edit/<?php echo escape($category["slug"]) ?>/" class="mt-3 sm:mt-0 sm:float-right text-base" method="post">

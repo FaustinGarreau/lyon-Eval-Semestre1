@@ -4,12 +4,20 @@ function bookCreate() {
         header("Location: /livres/");
         die();
     }
+    require MODELS."Categories.php";
+    $categories = getCategories();
     require VIEWS.'books/create.php';
 }
 
 function bookIndex() {
     require MODELS."Books.php";
     $books = getBooks();
+    require VIEWS.'books/index.php';
+}
+
+function bookIndexCategory($category) {
+    require MODELS."Books.php";
+    $books = getBooksCategory($category);
     require VIEWS.'books/index.php';
 }
 
@@ -26,6 +34,8 @@ function bookEdit($slug) {
     }
     require MODELS."Books.php";
     $book = getBook($slug);
+    require MODELS."Categories.php";
+    $categories = getCategories();
     require VIEWS.'books/edit.php';
 }
 
@@ -76,6 +86,11 @@ function bookStore() {
         setError("description", "Ce champ est requis");
     }
 
+    // Is category empty
+    if (!isset($_POST["category"]) || empty(escape($_POST["category"]))) {
+        setError("category", "Ce champ est requis");
+    }
+
     // Is date empty
     if (!isset($_POST["date"]) || empty(escape($_POST["date"]))) {
         setError("date", "Ce champ est requis");
@@ -95,9 +110,14 @@ function bookStore() {
             header("Location: /nouveau/");
             die();
         }
-        storeBook($_POST["author"], $slug, $_POST["title"], $_POST["description"], $_POST["date"]);
-        header("Location: /livres/".$slug."/");
-        die();
+
+        // Check if category exists
+        require MODELS."Categories.php";
+        if (getCategoryById($_POST["category"])) {
+            storeBook($_POST["author"], $slug, $_POST["title"], $_POST["description"], $_POST["date"], $_POST["category"]);
+            header("Location: /livres/livre/".$slug."/");
+            die();
+        }
     }
     header("Location: /nouveau/");
     die();
@@ -138,6 +158,11 @@ function bookUpdate($slug) {
         setError("description", "Ce champ est requis");
     }
 
+    // Is category empty
+    if (!isset($_POST["category"]) || empty(escape($_POST["category"]))) {
+        setError("category", "Ce champ est requis");
+    }
+
     // Is date empty
     if (!isset($_POST["date"]) || empty(escape($_POST["date"]))) {
         setError("date", "Ce champ est requis");
@@ -155,13 +180,18 @@ function bookUpdate($slug) {
         $book = getBook($newslug);
         if ($book && $book["slug"] != $slug) {
             setError("slug", "Cette url est déjà prise (".$newslug.").");
-            header("Location: /livres/".$slug."/edit");
+            header("Location: /livres/livre/".$slug."/edit");
             die();
         }
-        updateBook($slug, $_POST["author"], $newslug, $_POST["title"], $_POST["description"], $_POST["date"]);
-        header("Location: /livres/".$newslug."/");
-        die();
+
+        // Check if category exists
+        require MODELS."Categories.php";
+        if (getCategoryById($_POST["category"])) {
+            updateBook($slug, $_POST["author"], $newslug, $_POST["title"], $_POST["description"], $_POST["date"], $_POST["category"]);
+            header("Location: /livres/livre/".$newslug."/");
+            die();
+        }
     }
-    header("Location: /livres/".$slug."/edit");
+    header("Location: /livres/livre/".$slug."/edit");
     die();
 }

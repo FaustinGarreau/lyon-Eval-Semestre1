@@ -11,21 +11,21 @@ ob_start();
             <header class="p-4 flex items-center">
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="title" type="text" name="title" value="<?php echo getOld('title');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
+                    <input required id="title" type="text" name="title" value="<?php echo getOld('title');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
                     <span class="text-red-500 font-bold"><?php echo getError("title") ?></span>
                 </div>
             </header>
             <div class="p-4 flex items-center border-t">
                 <label for="author"><i class="fas fa-user mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="author" type="text" name="author" value="<?php echo getOld('author');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
+                    <input required id="author" type="text" name="author" value="<?php echo getOld('author');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
                     <span class="text-red-500 font-bold"><?php echo getError("author") ?></span>
                 </div>
             </div>
             <div class="content border-t border-b p-4 flex-grow flex items-center">
                 <label for="description"><i class="fas fa-book-open mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <textarea name="description" id="description" rows="8" class="w-full rounded border py-2 px-4" placeholder="Votre description"><?php echo getOld('description');?></textarea>
+                    <textarea required name="description" id="description" rows="8" class="w-full rounded border py-2 px-4" placeholder="Votre description"><?php echo getOld('description');?></textarea>
                     <span class="text-red-500 font-bold"><?php echo getError("description") ?></span>
                 </div>
             </div>
@@ -37,13 +37,13 @@ ob_start();
                 </div>
             </div>
             <div class="p-4 flex border-b items-center">
-                <label for="category"><i class="fas fa-tag mr-4 text-purple-900"></i></label>
+                <label for="category"><i class="fas fa-bookmark mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
                     <select class="" name="category" required>
-                        <option selected="true" disabled="disabled">--- Catégorie ---</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option selected="true" value="" disabled="disabled">--- Catégorie ---</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category["id"] ?>"><?php echo $category["category"] ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <span class="text-red-500 font-bold"><?php echo getError("category") ?></span>
                 </div>
@@ -52,7 +52,7 @@ ob_start();
                 <div class="flex">
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
                     <div class="">
-                        <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo getOld('date');?>">
+                        <input required type="date" class="rounded border py-2 px-4" name="date" id="date" value="<?php echo getOld('date');?>">
                         <span class="text-red-500 font-bold"><?php echo getError("date") ?></span>
                     </div>
                 </div>
