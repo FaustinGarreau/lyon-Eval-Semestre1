@@ -42,8 +42,8 @@ function getError($field) {
             <div class="p-4 flex border-b items-center">
                 <label for="slug"><i class="fas fa-globe mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="slug" type="text" name="slug" value="slug" class="w-full rounded border py-2 px-4" placeholder="Votre URL">
-                    <span class="text-red-500 font-bold">erreur</span>
+                    <input id="slug" type="text" name="slug" value="" class="w-full rounded border py-2 px-4" placeholder="Votre URL">
+                    <span class="text-red-500 font-bold"><?php echo getError('slugError'); ?></span>
                 </div>
             </div>
             <footer class="p-4 flex justify-between items-center">
@@ -51,7 +51,7 @@ function getError($field) {
                     <label for="date" class="mr-4"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le</label>
                     <div class="">
                         <input type="date" class="rounded border py-2 px-4" name="date" id="date" value="date">
-                        <span class="text-red-500 font-bold">erreur</span>
+                        <span class="text-red-500 font-bold"><?php echo getError('dateError'); ?></span>
                     </div>
                 </div>
                 <div class="actions flex text-white">
