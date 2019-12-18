@@ -7,8 +7,12 @@ function error($field) {
 }
 
 function old($field) {
+    if (isset($_SESSION['old'][$field])) {
+        $old = $_SESSION['old'][$field];
+        return escape($old);
+    }
 }
-
 function escape($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
+    

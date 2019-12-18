@@ -39,7 +39,8 @@ function run() {
 
     
     else {
-        var_dump('désolé, cette page n existe pas');
+        require CONTROLLER . 'IndexController.php';
+        book();
     }
 
 } 

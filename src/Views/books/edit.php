@@ -31,7 +31,7 @@ ob_start();
             <div class="p-4 flex border-b items-center">
                 <label for="slug"><i class="fas fa-globe mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
-                    <input id="slug" type="text" name="slug" value="<?php echo escape($book['title']); ?>" class="w-full rounded border py-2 px-4">
+                    <input id="slug" type="text" name="slug" value="<?php echo escape($book['slug']); ?>" class="w-full rounded border py-2 px-4">
                     <span class="text-red-500 font-bold"><?php echo error('description'); ?></span>
                 </div>
             </div>
@@ -55,7 +55,8 @@ ob_start();
 </div>
 
 <?php
-
+unset($_SESSION['errors']);
+unset($_SESSION['old']);
 $content = ob_get_clean();
 
 require VIEWS . 'layout.php';
