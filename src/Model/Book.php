@@ -35,13 +35,13 @@ function getlastbook() {
     return $req->fetchAll();
 }
 
-//function deleteBook($slug) {
-//    global $bdd;
-//    $req = $bdd->prepare('DELETE FROM book WHERE slug = :slug');
-//    $req->execute(array(
-//        'slug' => $slug
-//    ));
-//}
+function deleteBook($slug) {
+    global $bdd;
+    $req = $bdd->prepare('DELETE FROM book WHERE slug = :slug');
+    $req->execute(array(
+        'slug' => $slug
+    ));
+}
 function updateBook($slug) {
     global $bdd;
     $req = $bdd->prepare('UPDATE book SET title = :title, description = :description, slug = :slug , author = :author, created_at = :date WHERE slug = :prevslug');

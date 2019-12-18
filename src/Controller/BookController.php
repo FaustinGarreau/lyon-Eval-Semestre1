@@ -48,13 +48,13 @@ function bookEdit($param){
     $book = getBook($param);
     require VIEW . 'edit.php';
 }
-function bookUpdate($slug){
+function bookUpdate($param){
     Require MODEL . 'Book.php';
-    updateBook($slug);
+    updateBook($param);
     header('Location: /livres');
 }
-function bookDelete($slug){
+function bookDelete($param){
     Require MODEL . 'Book.php';
-    $book = deleteBook($slug);
+    deleteBook($param);
     header('Location: /livres');
 }

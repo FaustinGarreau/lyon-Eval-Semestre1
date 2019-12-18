@@ -48,7 +48,7 @@ ob_start();
                 </div>
             </footer>
         </form>
-        <form action="/livres/<?php echo escape($book['slug']); ?><?php echo escape($book['title']); ?>/delete" method="post" class="absolute top-0 right-0 mt-4 mr-4 text-white">
+        <form action="/livres/<?php echo escape($book['slug']); ?>/delete" method="post" class="absolute top-0 right-0 mt-4 mr-4 text-white">
             <button type="submit" class="ml-4 bg-red-500 w-10 h-10 flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
         </form>
     </div>
