@@ -28,6 +28,18 @@ ob_start();
                     <span class="text-red-500 font-bold"><?php echo error("description") ?></span>
                 </div>
             </div>
+            <div class="p-4 flex items-center border-t">
+                <label for="category"><i class="fas fa-bookmark mr-4 text-purple-900"></i></label>
+                <div class="flex-grow">
+                    <select id="category" name="category" class="block appearance-none rounded border py-2 px-4 w-full">
+                        <option value="" selected disabled>Choisissez une category</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value=<?php echo $category["id"]; ?> <?php echo escape($category["id"]) == (old("category") ?: escape($book["category_id"])) ? "selected" : ""; ?>><?php echo escape($category["category"]); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <span class="text-red-500 font-bold"><?php echo error("category"); ?></span>
+                </div>
+            </div>
             <div class="p-4 flex border-b items-center">
                 <label for="slug"><i class="fas fa-globe mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">

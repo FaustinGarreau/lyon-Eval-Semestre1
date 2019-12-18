@@ -35,6 +35,9 @@ function bookEdit($slug) {
     require(MODELS."Book.php");
     $book = getBook($slug);
 
+    require(MODELS."Category.php");
+    $categories = getCategories();
+
     //require VIEW
     require(VIEWS.'books/edit.php');
 }
@@ -53,8 +56,6 @@ function bookDelete($slug)
 //Creation Verification
 function bookStore() {
 
-    $validCount = 0;
-
     //CHECK POST
     if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["description"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
 
@@ -62,9 +63,9 @@ function bookStore() {
         $_SESSION["old"]["title"] = $_POST["title"];
         $_SESSION["old"]["author"] = $_POST["author"];
         $_SESSION["old"]["description"] = $_POST["description"];
-        $_SESSION["old"]["category"] = $_POST["category"];
         $_SESSION["old"]["slug"] = $_POST["slug"];
         $_SESSION["old"]["date"] = $_POST["date"];
+        $_SESSION["old"]["category"] = $_POST["category"];
 
 
         // title verification
@@ -152,8 +153,6 @@ function bookStore() {
 //Update Verification
 function bookUpdate($lastSlug) {
 
-    $validCount = 0;
-
     //CHECK POST
     if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["description"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
 
@@ -163,14 +162,12 @@ function bookUpdate($lastSlug) {
         $_SESSION["old"]["description"] = $_POST["description"];
         $_SESSION["old"]["slug"] = $_POST["slug"];
         $_SESSION["old"]["date"] = $_POST["date"];
+        $_SESSION["old"]["category"] = $_POST["category"];
 
 
         // title verification
         if (!empty(escape($_POST["title"]))) {
-            if (strlen(trim($_POST["title"])) >= 2) {
-                // VALID
-                $validCount++;
-            } else {
+            if (strlen(trim($_POST["title"])) < 2) {
                 // IS NOT VALID
                 $_SESSION["error"]["title"] = "Format incorrect (minimum 2 caractères)";
             }
@@ -182,10 +179,7 @@ function bookUpdate($lastSlug) {
 
         // author verification
         if (!empty(escape($_POST["author"]))) {
-            if (preg_match("#^[ \w-]{2,}$#", $_POST["author"])) {
-                // VALID
-                $validCount++;
-            } else {
+            if (!preg_match("#^[a-zA-Z '\-éèêëçäà]{2,}$#", $_POST["author"])) {
                 // IS NOT VALID
                 $_SESSION["error"]["author"] = "Format incorrect (minimum 2 caractères alphanumérique)";
             }
@@ -196,11 +190,7 @@ function bookUpdate($lastSlug) {
 
 
         // description verification
-        if (!empty(escape($_POST["description"]))) {
-            // VALID
-            $validCount++;
-        } else {
-            // EMPTY ERROR
+        if (empty(escape($_POST["description"]))) {
             $_SESSION["error"]["description"] = "Le champ est requis";
         }
 
@@ -210,10 +200,7 @@ function bookUpdate($lastSlug) {
             if (preg_match("#^[a-z0-9-]*$#", $_POST["slug"])) {
                 require(MODELS."Book.php");
                 $book = getBook($_POST["slug"]);
-                if (empty($book) || $_POST["slug"] == $lastSlug) {
-                    // VALID
-                    $validCount++;
-                } else {
+                if (!(empty($book) || $_POST["slug"] == $lastSlug)) {
                     // THIS SLUG IS ALREADY USED
                     $_SESSION["error"]["slug"] = "Ce slug n'est pas disponible";
                 }
@@ -229,10 +216,7 @@ function bookUpdate($lastSlug) {
 
         // date verification
         if (!empty(escape($_POST["date"]))) {
-            if (preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $_POST["date"])) {
-                // VALID
-                $validCount++;
-            } else {
+            if (!preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $_POST["date"])) {
                 // IS NOT VALID
                 $_SESSION["error"]["date"] = "Format incorrect";
             }
@@ -243,11 +227,11 @@ function bookUpdate($lastSlug) {
 
 
         //Update book
-        if ($validCount == 5) {
+        if (!isset($_SESSION["error"])) {
 
             updateBook($lastSlug);
 
-            header("Location: /livres/".$lastSlug);
+            header("Location: /livres/".$_POST["slug"]);
         } else {
             header("Location: /livres/".$lastSlug."/edit");
         }

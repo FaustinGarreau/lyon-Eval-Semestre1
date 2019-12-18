@@ -46,13 +46,14 @@ function storeBook() {
 function updateBook($slug) {
     global $bdd;
 
-    $stmt = $bdd->prepare("UPDATE book SET title = :title, author = :author, description = :description, slug = :slug, date = :date WHERE slug = :lastSlug");
+    $stmt = $bdd->prepare("UPDATE book SET title = :title, author = :author, description = :description, slug = :slug, date = :date, category_id = :category_id WHERE slug = :lastSlug");
     $stmt->execute(array(
         "title" => $_POST["title"],
         "author" => $_POST["author"],
         "description" => $_POST["description"],
         "slug" => $_POST["slug"],
         "date" => $_POST["date"],
+        "category_id" => $_POST["category"],
         "lastSlug" => $slug
     ));
 }
