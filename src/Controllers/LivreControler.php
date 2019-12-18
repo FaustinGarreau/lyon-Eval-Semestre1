@@ -13,6 +13,10 @@ function livreCreate(){
     require VIEWS . 'books/create.php';
 }
 function livreStore(){
+    
+        $_SESSION["value"] = $_POST;
+    
+        $_SESSION["value"] = $_POST;
     if (isset($_POST['title']) and isset($_POST['author']) and isset($_POST['description']) and isset($_POST['slug'])) {
         // si vide => erreur
         if (empty($_POST['title'])) {
@@ -39,6 +43,23 @@ function livreStore(){
                 //model
             require MODELS.'Livre.php';
             // fct du model
+
+            // si il y a deja un livre existant
+            $bookBySlug = getLivre($_POST['slug']);
+            $bookByTitle = getLivreByTitle($_POST['title']);
+
+            if ($bookBySlug) {
+                $_SESSION['errors']['slug'] = 'ce livre contient un slug qui existe deja :(';
+                header('location: /livres/nouveau');
+            }
+
+            if ($bookByTitle) {
+                $_SESSION['errors']['title'] = 'ce livre contient un titre qui existe deja :(';
+                header('location: /livres/nouveau');
+            }
+                // erreur 
+                // redirection
+            // sinon
             storeLivre();
             // redirige vers  livre header()
             header('location: /livres/' . $_POST['slug']);

@@ -24,4 +24,4 @@
 </body>
 </html>
 <?php unset($_SESSION['errors']);
-unset($_SESSION['old']);
+unset($_SESSION['value']);

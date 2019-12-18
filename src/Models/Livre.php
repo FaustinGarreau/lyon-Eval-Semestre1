@@ -12,6 +12,15 @@ function getLivre($slug){
     ]);
     return $req->fetch();
 }
+
+function getLivreByTitle($title){
+    global $bdd;
+    $req = $bdd->prepare('SELECT * FROM book WHERE title = :title');
+    $req->execute([
+        "title" => $title
+    ]);
+    return $req->fetch();
+}
 function storeLivre(){
     global $bdd;
     // modifier les champs
