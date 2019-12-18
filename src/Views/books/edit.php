@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION["user"])) {
+    header("Location: /");
+}
 $bookInfo = getBook();
 $title = $bookInfo['title'];
 ob_start();

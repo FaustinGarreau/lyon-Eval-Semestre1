@@ -19,15 +19,21 @@ ob_start();
         </div>
         <footer class="p-4 flex justify-between items-center">
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i><?php echo $bookInfo["date"]; ?></p>
-            <div class="actions flex">
-                <a href="/livres/<?php echo $bookInfo["slug"]; ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <form action="/livres/<?php echo $bookInfo["slug"]; ?>/delete" method="post">
-                    <input type="hidden" name="id" value="<?php echo $bookInfo["id"]; ?>"/>
-                    <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
-                </form>
-            </div>
+            <?php
+                if (isset($_SESSION["user"])) {
+                    ?>
+                        <div class="actions flex">
+                            <a href="/livres/<?php echo $bookInfo["slug"]; ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="/livres/<?php echo $bookInfo["slug"]; ?>/delete" method="post">
+                                <input type="hidden" name="id" value="<?php echo $bookInfo["id"]; ?>"/>
+                                <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    <?php
+                        }
+                    ?>
         </footer>
     </div>
 </div>

@@ -11,3 +11,10 @@ CREATE TABLE book (
     date DATE NOT NULL,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE user (
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL unique,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);

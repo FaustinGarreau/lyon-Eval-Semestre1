@@ -3,7 +3,7 @@ $title = "Tout les livres";
 ob_start();
 $allBooks = getAllBooks();
 ?>
-<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a></h1>
+<h1 class="mb-8 text-2xl font-bold"><i class="fas fa-book mr-4 text-purple-900"></i>Tout Les Livres <?php if (isset($_SESSION["user"])) { ?><a href="/livres/nouveau" class="py-2 px-4 bg-green-500 hover:bg-green-600 float-right text-white text-base rounded">Créer</a><?php } ?></h1>
 <div class="flex flex-wrap -mx-4">
     <?php
         foreach ($allBooks as $key => $value) {

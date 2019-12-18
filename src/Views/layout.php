@@ -12,8 +12,22 @@
     <header class="bg-purple-500 border-t-8 border-purple-900 text-white">
         <div class="container mx-auto flex justify-between">
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
+            <?php
+                if (isset($_SESSION["user"])) {
+                    ?>
+                        <div class="flex justify-center items-center">
+                            <p class="p-4 text-2xl font-bold"><?php echo $_SESSION["user"]["username"]; ?></p>
+                            <form action="/disconnect" method="post">
+                                <input type="submit" class="bg-purple-400 text-gray-300 py-2 px-4 rounded" value="disconnect"/>
+                            </form>
+                        </div>
+                    <?php 
+                }
+            ?>
             <nav class="flex">
                 <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <a href="/login" class="p-4 hover:bg-purple-600 flex items-center">login</a>
+                <a href="/register" class="p-4 hover:bg-purple-600 flex items-center">register</a>
             </nav>
         </div>
     </header>

@@ -6,8 +6,7 @@ function run() {
     // --- GET ---
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if ($url == "/") {
-            //require(CONTROLLERS."homeController.php");
-            //renderHome();
+            header("Location: /livres");
         } elseif ($url == "/livres/nouveau") {
             require(CONTROLLERS."bookController.php");
             renderCreateBook();
@@ -20,7 +19,14 @@ function run() {
         } elseif(preg_match("/^\/livres\/[\w-]+\/edit$/", $url)) {
             require(CONTROLLERS."bookController.php");
             renderEditPage();
-        } else {
+        } elseif ($url == "/login") {
+            require(CONTROLLERS."authController.php");
+            renderLogin();
+        } elseif ($url == "/register") {
+            require(CONTROLLERS."authController.php");
+            renderRegister();
+        } 
+        else {
             //require(VIEW."404.html");
         }
     }
@@ -37,16 +43,14 @@ function run() {
             require(CONTROLLERS."bookController.php");
             updateBook();
         } elseif ($url == "/register") {
-            require(CONTROLLER."loginController.php");
+            require(CONTROLLERS."authController.php");
             newUser();
         } elseif ($url == "/login") {
-            require(CONTROLLER."loginController.php");
-            connect();
-            header("Location: /article");
-        } elseif ($url == "/logout") {
-            require(CONTROLLER."loginController.php");
-            logout();
-            header("Location: /article");
+            require(CONTROLLERS."authController.php");
+            login();
+        } elseif ($url == "/disconnect") {
+            require(CONTROLLERS."authController.php");
+            disconnect();
         }
     }
 }

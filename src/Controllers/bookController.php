@@ -19,6 +19,10 @@ function renderEditPage() {
 }
 // post
 function newBook() {
+    if (!isset($_SESSION["user"])) {
+        header("Location: /");
+        return;
+    }
     $_SESSION["error"]["newBook"] = [];
     $_SESSION["value"]["newBook"] = $_POST;
     foreach ($_POST as $key => $value) {
@@ -61,6 +65,10 @@ function newBook() {
 }
 
 function deleteBook() {
+    if (!isset($_SESSION["user"])) {
+        header("Location: /");
+        return;
+    }
     global $bdd;
     $req = $bdd->prepare('DELETE FROM book WHERE id=:id');
     $req->execute([
@@ -70,6 +78,10 @@ function deleteBook() {
 }
 
 function updateBook() {
+    if (!isset($_SESSION["user"])) {
+        header("Location: /");
+        return;
+    }
     $_SESSION["error"]["editBook"] = [];
     $_SESSION["value"]["editBook"] = $_POST;
     foreach ($_POST as $key => $value) {
