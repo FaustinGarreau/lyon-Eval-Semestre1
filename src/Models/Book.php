@@ -32,13 +32,14 @@ function deleteBook($slug)
 function storeBook() {
     global $bdd;
 
-    $stmt = $bdd->prepare("INSERT INTO book (title,author,description,slug,date) VALUES (:title,:author,:description,:slug,:date)");
+    $stmt = $bdd->prepare("INSERT INTO book (title,author,description,slug,date,category_id) VALUES (:title,:author,:description,:slug,:date,:category_id)");
     $stmt->execute(array(
         "title" => $_POST["title"],
         "author" => $_POST["author"],
         "description" => $_POST["description"],
         "slug" => $_POST["slug"],
-        "date" => $_POST["date"]
+        "date" => $_POST["date"],
+        "category_id" => $_POST["category"]
     ));
 }
 

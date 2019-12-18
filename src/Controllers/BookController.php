@@ -62,16 +62,14 @@ function bookStore() {
         $_SESSION["old"]["title"] = $_POST["title"];
         $_SESSION["old"]["author"] = $_POST["author"];
         $_SESSION["old"]["description"] = $_POST["description"];
+        $_SESSION["old"]["category"] = $_POST["category"];
         $_SESSION["old"]["slug"] = $_POST["slug"];
         $_SESSION["old"]["date"] = $_POST["date"];
 
 
         // title verification
         if (!empty(escape($_POST["title"]))) {
-            if (strlen(trim($_POST["title"])) >= 2) {
-                // VALID
-                $validCount++;
-            } else {
+            if (strlen(trim($_POST["title"])) < 2) {
                 // IS NOT VALID
                 $_SESSION["error"]["title"] = "Format incorrect (minimum 2 caractères)";
             }
@@ -83,12 +81,9 @@ function bookStore() {
 
         // author verification
         if (!empty(escape($_POST["author"]))) {
-            if (preg_match("#^[ \w-]{2,}$#", $_POST["author"])) {
-                // VALID
-                $validCount++;
-            } else {
+            if (!preg_match("#^[a-zA-Z '\-éèêëçäà]{2,}$#", $_POST["author"])) {
                 // IS NOT VALID
-                $_SESSION["error"]["author"] = "Format incorrect (minimum 2 caractères alphanumérique)";
+                $_SESSION["error"]["author"] = "Format incorrect (minimum 2 caractères alphabétique)";
             }
         } else {
             // EMPTY ERROR
@@ -97,12 +92,16 @@ function bookStore() {
 
 
         // description verification
-        if (!empty(escape($_POST["description"]))) {
-            // VALID
-            $validCount++;
-        } else {
+        if (empty(escape($_POST["description"]))) {
             // EMPTY ERROR
             $_SESSION["error"]["description"] = "Le champ est requis";
+        }
+
+
+        // slug verification
+        if (empty(escape($_POST["category"]))) {
+            // EMPTY ERROR
+            $_SESSION["error"]["category"] = "Le champ est requis";
         }
 
 
@@ -111,11 +110,7 @@ function bookStore() {
             if (preg_match("#^[a-z0-9-]*$#", $_POST["slug"])) {
                 require(MODELS."Book.php");
                 $book = getBook($_POST["slug"]);
-                if (empty($book)) {
-                    // VALID
-                    $validCount++;
-                } else {
-                    // THIS SLUG IS ALREADY USED
+                if (!empty($book)) {
                     $_SESSION["error"]["slug"] = "Ce slug n'est pas disponible";
                 }
             } else {
@@ -130,11 +125,8 @@ function bookStore() {
 
         // date verification
         if (!empty(escape($_POST["date"]))) {
-            if (preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $_POST["date"])) {
-                // VALID
-                $validCount++;
-            } else {
-                // IS NOT VALID
+            if (!preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $_POST["date"])) {
+
                 $_SESSION["error"]["date"] = "Format incorrect";
             }
         } else {
@@ -144,7 +136,7 @@ function bookStore() {
 
 
         //Insert new book
-        if ($validCount == 5) {
+        if (!isset($_SESSION["error"])) {
 
             storeBook();
 
