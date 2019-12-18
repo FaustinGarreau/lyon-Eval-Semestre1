@@ -12,7 +12,7 @@ ob_start();
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
                     <input id="title" type="text" name="title" value="" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
-                    <span class="text-red-500 font-bold"><?php echo getError('titleError'); ?></span>
+                    <span class="text-red-500 font-bold"><?php echo getError('titleErr'); ?></span>
                 </div>
             </header>
             <div class="p-4 flex items-center border-t">

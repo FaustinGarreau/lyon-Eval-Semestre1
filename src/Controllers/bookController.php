@@ -13,9 +13,9 @@ function bookStore() {
         $_SESSION['slug'] = $_POST['slug'];
         $_SESSION['date'] = $_POST['date'];
         if (empty($_SESSION['title'])) {
-            $_SESSION['errors']['titleError'] = "le title est requis";
+            $_SESSION['errors']['titleErr'] = "le title est requis";
         }else if (!preg_match('#^[A-Za-z-]{2,}$#', $_SESSION['title'])) {
-            $_SESSION['errors']['titleError'] = "Format incorrect (au moins 2 caractères)";
+            $_SESSION['errors']['titleErr'] = "Format incorrect (au moins 2 caractères)";
         } else {
             $_SESSION['title'] = $_SESSION['title'];
         }
@@ -99,6 +99,7 @@ function bookUpdate($slug) {
         $_SESSION['author'] = $_POST['author'];
         $_SESSION['slug'] = $_POST['slug'];
         $_SESSION['date'] = $_POST['date'];
+       
         if (empty($_POST['title'])) {
             $_SESSION['errors']['titleErr'] = "le title est requis";
         }
