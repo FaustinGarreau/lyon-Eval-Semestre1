@@ -28,6 +28,10 @@ function run() {
             // Create page
             require CONTROLLERS."BookController.php";
             bookIndexCategory($matchs[1]);
+        } elseif (match("/livres/tags/?", $url, $matchs)) {
+            // Create page
+            require CONTROLLERS."BookController.php";
+            bookIndexTag($matchs[1]);
         } elseif (match("/livres/livre/?", $url, $matchs)) {
             // Create page
             require CONTROLLERS."BookController.php";
@@ -56,6 +60,10 @@ function run() {
             // Create page
             require CONTROLLERS."CategoriesController.php";
             categoriesIndex();
+        } elseif (match("/tags", $url)) {
+            // Create page
+            require CONTROLLERS."TagsController.php";
+            tagsIndex();
         } else {
             header("Location: /livres/");
         }
@@ -94,6 +102,18 @@ function run() {
             // Delete category
             require CONTROLLERS."CategoriesController.php";
             categoryDelete($matchs[1]);
+        } elseif (match("/tags/nouvelle", $url)) {
+            // New tag
+            require CONTROLLERS."TagsController.php";
+            tagStore();
+        } elseif (match("/tags/edit/?", $url, $matchs)) {
+            // Edit tag
+            require CONTROLLERS."TagsController.php";
+            tagEdit($matchs[1]);
+        } elseif (match("/tags/delete/?", $url, $matchs)) {
+            // Delete tag
+            require CONTROLLERS."TagsController.php";
+            tagDelete($matchs[1]);
         } else {
             header("Location: /livres/");
         }

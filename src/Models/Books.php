@@ -11,6 +11,20 @@ function getBooksCategory($category) {
     return $stmt->fetchAll();
 }
 
+function getBooksTag($tag) {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT GROUP_CONCAT(tag.tag) as tags, author, title, description, `date`, book.slug
+        FROM book
+        INNER JOIN book_tag
+        ON (book_tag.book_id = book.id)
+        INNER JOIN tag
+        ON (book_tag.tag_id = tag.id)
+        GROUP BY book.id
+        HAVING SUM(IF(tag.slug = ?, 1, 0)) >= 1");
+    $stmt->execute([$tag]);
+    return $stmt->fetchAll();
+}
+
 function getBook($slug) {
     global $pdo;
     $stmt = $pdo->prepare("SELECT author, title, description, `date`, book.slug, category FROM book INNER JOIN category ON (category.id = category_id) WHERE book.slug=?");

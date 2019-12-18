@@ -21,6 +21,12 @@ function bookIndexCategory($category) {
     require VIEWS.'books/index.php';
 }
 
+function bookIndexTag($tag) {
+    require MODELS."Books.php";
+    $books = getBooksTag($tag);
+    require VIEWS.'books/index.php';
+}
+
 function bookShow($slug) {
     require MODELS."Books.php";
     $book = getBook($slug);

@@ -15,6 +15,7 @@
             <nav class="flex">
                 <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
                 <a href="/categories" class="p-4 hover:bg-purple-600 flex items-center">Catégories</a>
+                <a href="/tags" class="p-4 hover:bg-purple-600 flex items-center">Tags</a>
                 <?php if (isLogin()): ?>
                     <a href="/logout" class="p-4 hover:bg-purple-600 flex items-center">Déconnexion</a>
                 <?php else: ?>

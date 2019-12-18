@@ -12,7 +12,7 @@ function categoryStore() {
     }
     if (!isset($_POST["category"]) || empty(escape($_POST["category"]))) {
         setError("error", "Ce champ est requis");
-    } elseif (!preg_match("#^.{2,40}$#", escape($_POST["category"]))) {
+    } elseif (!preg_match("#^[\wÀ-ÿ-]{2,40}$#", escape($_POST["category"]))) {
         setError("error", "Entre 2 et 40 lettres S.V.P.");
     }
     $category = ucfirst(strtolower(escape($_POST["category"])));
@@ -35,7 +35,7 @@ function categoryEdit($oldslug) {
     }
     if (!isset($_POST["edit"]) || empty(escape($_POST["edit"]))) {
         setError($oldslug, "Ce champ est requis");
-    } elseif (!preg_match("#^.{2,40}$#", escape($_POST["edit"]))) {
+    } elseif (!preg_match("#^[\wÀ-ÿ-]{2,40}$#", escape($_POST["edit"]))) {
         setError($oldslug, "Entre 2 et 40 lettres S.V.P.");
     }
     $category = ucfirst(strtolower(escape($_POST["edit"])));
