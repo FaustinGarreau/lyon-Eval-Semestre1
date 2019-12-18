@@ -12,7 +12,7 @@ ob_start();
                 <label for="title"><i class="fas fa-heading mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
                     <input id="title" type="text" name="title" value="<?php echo old('title');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre titre">
-                    <span class="text-red-500 font-bold"><?php echo error("title"); echo error("req");?></span>
+                    <span class="text-red-500 font-bold"><?php echo error("title");?></span>
                 </div>
             </header>
             <div class="p-4 flex items-center border-t">
@@ -20,6 +20,22 @@ ob_start();
                 <div class="flex-grow">
                     <input id="title" type="text" name="author" value="<?php echo old('author');?>" class="rounded border py-2 px-4 w-full" placeholder="Votre auteur">
                     <span class="text-red-500 font-bold"><?php echo error("author");?></span>
+                </div>
+            </div>
+            <div class="p-4 flex items-center border-t">
+                <label for="author"><i class="fas fa-bookmark mr-4 text-purple-900"></i></label>
+                <div class="flex-grow">
+                    <select name="category">
+                        <option value="">Choisissez une catégorie</option>
+                        <?php
+                            foreach ($categorys as $category) {
+                                ?>
+                                    <option value="<?php echo $category["id"]; ?>"><?php echo $category["category"]; ?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                    <span class="text-red-500 font-bold"><?php echo error("category");?></span>
                 </div>
             </div>
             <div class="content border-t border-b p-4 flex-grow flex items-center">
@@ -33,7 +49,7 @@ ob_start();
                 <label for="slug"><i class="fas fa-globe mr-4 text-purple-900"></i></label>
                 <div class="flex-grow">
                     <input id="slug" type="text" name="slug" value="<?php echo old('slug');?>" class="w-full rounded border py-2 px-4" placeholder="Votre URL">
-                    <span class="text-red-500 font-bold"><?php echo error("slug"); echo error("req");?></span>
+                    <span class="text-red-500 font-bold"><?php echo error("slug");?></span>
                 </div>
             </div>
             <footer class="p-4 flex justify-between items-center">

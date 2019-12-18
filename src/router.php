@@ -8,6 +8,9 @@ function run() {
         if ($url == '/livres') {
             require CONTROLLERS . 'BookController.php';
             bookIndex();
+        } elseif ($url == '/category') {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryIndex();
         } elseif ($url == '/livres/nouveau') {
             require CONTROLLERS . 'BookController.php';
             bookCreate();
@@ -20,6 +23,9 @@ function run() {
         } elseif ($url == '/logout') {
             require CONTROLLERS . 'AuthController.php';
             AuthLogout();
+        } elseif (preg_match('#^\/category\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
+            require CONTROLLERS . 'CategoryController.php';
+            categoryShow($slug[1]);
         } elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url, $slug)) {
             require CONTROLLERS . 'BookController.php';
             bookShow($slug[1]);

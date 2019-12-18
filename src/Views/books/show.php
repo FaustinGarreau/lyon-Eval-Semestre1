@@ -1,6 +1,6 @@
 <?php
 $title = $book['title'];
-$date = date_create($article['created_at']);
+$date = date_create(escape($article['created_at']));
 ob_start();
 ?>
 
@@ -13,6 +13,10 @@ ob_start();
             <i class="fas fa-user mr-4 text-purple-900"></i>
             <p><?php echo escape($book["author"]); ?></p>
         </div>
+        <div class="content border-t p-4 flex-grow flex items-center">
+            <i class="fas fa-bookmark mr-4 text-purple-900"></i>
+            <?php echo escape($book["category"]); ?>
+        </div>
         <div class="content border-t border-b p-4 flex-grow flex items-center">
             <i class="fas fa-book-open mr-4 text-purple-900"></i>
             <?php echo escape($book["description"]); ?>
@@ -23,10 +27,10 @@ ob_start();
                 <?php
                     if (isset($_SESSION["user"])) {
                         ?>
-                            <a href="/livres/<?php echo $book["slug"]; ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
+                            <a href="/livres/<?php echo escape($book["bookSlug"]); ?>/edit" class="w-10 h-10 bg-yellow-500 hover:bg-yellow-600 text-white flex justify-center items-center">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="/livres/<?php echo $book["slug"]; ?>/delete" method="post">
+                            <form action="/livres/<?php echo escape($book["bookSlug"]); ?>/delete" method="post">
                                 <button type="submit" class="ml-4 bg-red-500 w-10 h-10 text-white flex justify-center items-center"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         <?php

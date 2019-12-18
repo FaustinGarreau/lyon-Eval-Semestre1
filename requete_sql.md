@@ -44,4 +44,10 @@ ALTER TABLE book ADD category_id INT UNSIGNED NOT NULL;
 
 ALTER TABLE book ADD CONSTRAINT fk_book_category_id FOREIGN KEY (category_id) REFERENCES category(id);
 
+ALTER TABLE book ADD user_id INT UNSIGNED NOT NULL;
+
+ALTER TABLE book ADD CONSTRAINT fk_book_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE users ADD role VARCHAR(255) NOT NULL DEFAULT 'utilisateur';
+
 ```

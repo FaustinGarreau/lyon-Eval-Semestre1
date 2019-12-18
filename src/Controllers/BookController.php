@@ -12,6 +12,9 @@ function bookIndex() {
 
 function bookCreate() {
     if (isset($_SESSION["user"])) {
+        require MODELS . 'Category.php';
+        $categorys = getCategorys();
+
         require VIEWS . 'books/create.php';
     } else {
         header("Location: /livres");
@@ -27,6 +30,9 @@ function bookShow($slug) {
 
 function bookEdit($slug) {
     if (isset($_SESSION["user"])) {
+        require MODELS . 'Category.php';
+        $categorys = getCategorys();
+
         require MODELS . 'Book.php';
         $book = getbook("", $slug);
 
@@ -50,6 +56,7 @@ function bookUpdate($slug) {
     if (!isset($_SESSION["user"])) {
         header('Location: /livres');
     } elseif (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["author"]) && isset($_POST["slug"]) && isset($_POST["date"])) {
+        $_SESSION['old'] = $_POST;
 
         if (!escape($_POST['title'])) {
             $_SESSION["error"]["title"] = "Ce champ est requis";
@@ -98,6 +105,11 @@ function bookUpdate($slug) {
           header("Location: /livres/". $slug ."/edit");
       } else if ($_POST['slug'] != strtolower($_POST['slug'])) {
           $_SESSION["error"]["slug"] = "Votre url n'est pas valide";
+          header("Location: /livres/". $slug ."/edit");
+      }
+
+      if (!escape($_POST['category'])) {
+          $_SESSION["error"]["category"] = "Ce champ est requis";
           header("Location: /livres/". $slug ."/edit");
       }
 
@@ -183,6 +195,11 @@ function bookStore() {
           header("Location: /livres/nouveau");
       } else if ($_POST['slug'] != strtolower($_POST['slug'])) {
           $_SESSION["error"]["slug"] = "Votre url n'est pas valide";
+          header("Location: /livres/nouveau");
+      }
+
+      if (!escape($_POST['category'])) {
+          $_SESSION["error"]["category"] = "Ce champ est requis";
           header("Location: /livres/nouveau");
       }
 

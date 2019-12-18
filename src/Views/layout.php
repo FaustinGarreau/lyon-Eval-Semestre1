@@ -14,6 +14,7 @@
             <a href="/" class="p-4 hover:bg-purple-600 text-2xl font-bold">Mes Livres</a>
             <nav class="flex">
                 <a href="/livres" class="p-4 hover:bg-purple-600 flex items-center">Voir Livres</a>
+                <a href="/category" class="p-4 hover:bg-purple-600 flex items-center">Voir Catégories</a>
                 <?php
                     if (!isset($_SESSION["user"])) {
                         ?>
@@ -22,7 +23,7 @@
                         <?php
                     } else {
                         ?>
-                            <p class="p-4 hover:bg-purple-600 flex items-center"><?php echo $_SESSION["user"]["username"]; ?></p>
+                            <p class="p-4 hover:bg-purple-600 flex items-center"><?php echo escape($_SESSION["user"]["username"]); ?></p>
                             <a href="/logout" class="p-4 hover:bg-purple-600 flex items-center"><i class="fas fa-power-off"></i></a>
                         <?php
                     }
