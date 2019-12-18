@@ -16,9 +16,12 @@ function run() {
         require CONTROLLER .'livreController.php';
         bookCreate();
     }
-    elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url)) {
+    elseif (preg_match('#^\/livres\/([a-zA-Z0-9-]+)$#', $url, $matches)) {
         require CONTROLLER .'livreController.php';
         bookShow($matches[1]);
     }
-
+    elseif (preg_match('#^\/book\/([A-Za-z0-9]+)$#', $uri, $matches) && $method == "POST") {
+        require CONTROLLER .'livreController.php';
+        deleteBook($matches[1]);
+    }
 }

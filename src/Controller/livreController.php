@@ -2,7 +2,7 @@
 
 function bookIndex() {
     require MODELS.'livre.php';
-    $livre = getBooks();
+    $livres = getBooks();
     require VIEW .'/books/index.php';
 }
 
@@ -30,9 +30,8 @@ function bookStore() {
         if (!isset($_SESSION['errors'])) {
             require MODELS .'livre.php';
         //qlq chose a mettre pour ne pas ecrir 2 fois le meme slug
-            storeBook($slug);
+            storeBook();
             header('Location: /livres');
-            exit();
         }
         else {
             header('Location: /livres/nouveau');
@@ -40,14 +39,20 @@ function bookStore() {
     }
 }
 
-function bookShow($param) {
+function bookShow($slug) {
     //echo 2;
     require MODELS .'livre.php';
     $book = getBook($slug);
     if ($book) {
-        require VIEW .'/book/show.php';
+        require VIEW .'books/show.php';
     } else {
         header('Location: /livres');
         exit();
     }
+}
+
+function deleteBook($param) {
+require MODEL .'livre.php';
+bookDelete($param);
+header('Location: /livres');
 }
