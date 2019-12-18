@@ -8,3 +8,15 @@ function getCategories()
 
     return $stmt->fetchAll();
 }
+
+function getCategory($id)
+{
+    global $bdd;
+
+    $stmt = $bdd->prepare("SELECT * FROM category WHERE id = :id");
+    $stmt->execute(array(
+        "id" => $id
+    ));
+
+    return $stmt->fetch();
+}

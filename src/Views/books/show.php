@@ -12,9 +12,13 @@ ob_start();
             <i class="fas fa-user mr-4 text-purple-900"></i>
             <p><?php echo $book["author"]; ?></p>
         </div>
+        <div class="content border-t p-4 flex-grow flex items-center">
+            <i class="fas fa-bookmark mr-4 text-purple-900"></i>
+            <p><?php echo $category["category"]; ?></p>
+        </div>
         <div class="content border-t border-b p-4 flex-grow flex items-center">
             <i class="fas fa-book-open mr-4 text-purple-900"></i>
-            <?php echo $book["description"]; ?>
+            <p><?php echo $book["description"]; ?></p>
         </div>
         <footer class="p-4 flex justify-between items-center">
             <p class="text-sm"><i class="far fa-clock mr-4 font-bold text-purple-900"></i>Sortie le <?php echo strftime("%a %d %b %G", strtotime($book["date"])); ?></p>

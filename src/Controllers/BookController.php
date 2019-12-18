@@ -8,6 +8,9 @@ function bookIndex()
     require(MODELS."Book.php");
     $books = getBooks();
 
+    require(MODELS."Category.php");
+    $categories = getCategories();
+
     //require VIEW
     require(VIEWS.'books/index.php');
 }
@@ -16,6 +19,9 @@ function bookIndex()
 function bookShow($slug) {
     require(MODELS."Book.php");
     $book = getBook($slug);
+
+    require(MODELS."Category.php");
+    $category = getCategory($book["category_id"]);
 
     //require VIEW
     require(VIEWS.'books/show.php');

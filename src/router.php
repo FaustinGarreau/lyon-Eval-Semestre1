@@ -27,6 +27,12 @@ function run() {
             bookCreate();
         }
 
+        //Create book page (GET)
+        elseif (preg_match("#^\/livres\/category\/?$#", $url)) {
+            require(CONTROLLERS."BookController.php");
+            bookCreate();
+        }
+
         //Show book page (GET)
         elseif (preg_match("#^\/livres\/([\w?-]+)\/?$#", $url, $slug)) {
             require(CONTROLLERS."BookController.php");
