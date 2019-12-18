@@ -23,6 +23,9 @@ function bookShow($slug) {
 
 //Go to creation page
 function bookCreate() {
+    require(MODELS."Category.php");
+    $categories = getCategories();
+
     //require VIEW
     require(VIEWS.'books/create.php');
 }
